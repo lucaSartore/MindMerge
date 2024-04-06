@@ -4,8 +4,8 @@
 
 \usepackage{xcolor}
 \usepackage[margin=0.5in]{geometry} 
-
-\title{MindMerge - Deliverable e 1}
+\usepackage{graphicx}
+\title{MindMerge --- Deliverable e 1}
 \author{Gabriele Benetti, Gioele Berdardini, Luca Fossa Crescini, Luca Sartore}
 
 \begin{document}
@@ -65,5 +65,78 @@ The list of sub components is the following:
     \item \textbf{Front End: } This component is responsible for the visualization of the data, and the interaction with the user. This component dose not have a specific color assigned to it, since it dose not provide any interface to other components.
     \item \textcolor[HTML]{E68CB4}{\textbf{External APIs: }} All interfaces provided by external APIs in the system (like authentication, payment, etc.) are painted with the color \textcolor[HTML]{E68CB4}{pink}.
 \end{itemize}
+
+\subsection{Data Base Manager}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/data_base_manager.jpg}
+\subsubsection{Descriptions}
+
+We have model the system with 3 particular objects (tasks, users and organizations).
+The database manager has a specific component to manage each one of them. The interfaces provided
+are divided fot the kind of action that needs to be performed (creation, deletion, modification or read operations).\newline
+The ``Database Connector'' component is used to hide the all the specific and superfluous detail about connecting to a
+database (like authentication, api version ecc.)
+
+\subsection{Notification Manager}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/notification_manager.jpg}
+\subsubsection{Descriptions}
+The notification manager system has 2 specific tasks:
+\begin{itemize}
+    \item Allowing other components to send notification to users.
+    
+        This is done by the ``send notification'' interface
+    \item Allow a user to visualize pending notification in the front end
+    
+        This id done by the other 4 interfaces
+\end{itemize}
+
+    The system is composed of 3 different component
+\begin{itemize}
+    \item \textbf{Generic Notification Manager: } 
+
+    This component is the one that provided the ``Send Notification'' interface, and it only act as
+    a switch. The system allow for notification to be sent either via mail, or with an in-app notification.
+    When a notification comes in to be send this component will decide where to send it.
+    \item \textbf{External Notification Manager: } 
+    
+    This component will send a mail with a notification to a specific user.
+    This component has various external APIs connected to it, as how the notification is sent will depend on how the user signed In.
+    \item \textbf{Internal Notification Manager: } 
+
+    This component manage the in-app notifications. It can either be asked to send a notification (in this case it writes it in the database)
+    or it can be asked to get a notification by the front end, so that it can be visualized (in this case it reads the necessary data from the database)
+
+\end{itemize}
+
+\subsection{Account Manager}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/account_manager.jpg}
+\subsubsection{Descriptions}
+
+\subsection{LLM Prompter}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/llm_prompter.jpg}
+\subsubsection{Descriptions}
+
+\subsection{Task Tree Navigator}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_tree_navigator.jpg}
+\subsubsection{Descriptions}
+
+\subsection{Report Manager}
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/report_manager.jpg}
+\subsubsection{Descriptions}
+
+\subsection{Task Manager}
+\subsubsection{Diatgram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_manager.jpg}
+\subsubsection{Descriptions}
+
+\subsection{Front End}
+\subsubsection{Diatgram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
+\subsubsection{Descriptions}
 
 \end{document}
