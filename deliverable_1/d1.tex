@@ -2,6 +2,8 @@
 
 \documentclass{article}
 
+\usepackage{xcolor}
+\usepackage[margin=0.5in]{geometry} 
 
 \title{MindMerge - Deliverable e 1}
 \author{Gabriele Benetti, Gioele Berdardini, Luca Fossa Crescini, Luca Sartore}
@@ -16,8 +18,8 @@
 \subsection{Strengths}
 \begin{itemize}
     \item \textbf{Operating in an market that is hyped and growing: }
-    The Artificial intelligence and LLM (large languege models) market is currently on everyonse's mouth.
-    and is growing fast\dots this would make it easy for our team to find sell the product, and potentialy find investors 
+    The Artificial intelligence and LLM (large language models) market is currently on everyone's mouth.
+    and is growing fast\dots this would make it easy for our team to find sell the product, and potentially find investors 
 
     \item \textbf{The workplace is getting more and more digital: }
     In the last decades more and more jobs are getting used to using 
@@ -32,5 +34,36 @@
 \subsection{Opportunities}
 
 \subsection{Threads}
+
+\section{Components Diagram}
+
+This section illustrate the component diagram of the system. To improve readability we split the components into several sub
+components.
+Each sub component has a color assigned to it, and the interfaces that are provided by that specific component are painted with the same color.
+This helps to quickly identify which component is responsible for a specific interface.
+\newline \newline
+The list of sub components is the following:
+\begin{itemize}
+    \item \textcolor[HTML]{8CC86E}{\textbf{Data Base Manager: }} This component is responsible for managing the data base, it is an interface between 
+            the data base and the rest of the subsystems. The color assigned to this component is \textcolor[HTML]{8CC86E}{green}.
+    \item \textcolor[HTML]{F0C832}{\textbf{Notification Manager: }} This component is responsible for managing the notifications; 
+    This means sending notification, and serve the data to the front end to visualize the pending notification of a user. The color assigned to this component is \textcolor[HTML]{F0C832}{yellow}.
+    \item \textcolor[HTML]{FF0000}{\textbf{Account Manager: }} This component manage accounts, in particular it handles sign in, log in, account changes and account deletion.
+     The color assigned to this component is \textcolor[HTML]{FF0000}{red}.
+    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It's objective is to make the 
+    implementation of the rest of the system agnostic from the specific LLM used. The color assigned to this component is \textcolor[HTML]{64C8BE}{aqua green}.
+    \item \textcolor[HTML]{A0C8F0}{\textbf{Task Tree Navigator: }} This component is a simple library with some algorithm to navigate a tree data structure.
+    In our specific case the tree represent the tasks and subtasks of an organization. Since this algorithms are used many
+    times throughout the system they have been put in a specific component to make them reusable. The color assigned to this component is \textcolor[HTML]{A0C8F0}{light blue}.
+    \item \textcolor[HTML]{FA9646}{\textbf{Report Manager: }} This component manage the reports, in particular it is responsible for generating report automatically (using an LLM) or manually (reminding users with a notification that they have to deliver a report).
+    The component also allow users to set report schedule, so that the reports generation can be triggered automatically with a customizable frequency.
+    The color assigned to this component is \textcolor[HTML]{FA9646}{orange}.
+    \item \textcolor[HTML]{FF00FF}{\textbf{Organization Manager: }} This component allow an user to create an organization, or perform some action on his organizations, 
+    like adding/removing a user, or paying the subscription to use the software. The color assigned to this component is \textcolor[HTML]{FF00FF}{purple}.
+    \item \textcolor[HTML]{2682D5}{\textbf{Task Manager: }} This component allow users to interact with the tasks.
+    In particular it is responsible to visualize, create, delete and edit tasks inside one organization. The color assigned to this component is \textcolor[HTML]{2682D5}{blue}.
+    \item \textbf{Front End: } This component is responsible for the visualization of the data, and the interaction with the user. This component dose not have a specific color assigned to it, since it dose not provide any interface to other components.
+    \item \textcolor[HTML]{E68CB4}{\textbf{External APIs: }} All interfaces provided by external APIs in the system (like authentication, payment, etc.) are painted with the color \textcolor[HTML]{E68CB4}{pink}.
+\end{itemize}
 
 \end{document}
