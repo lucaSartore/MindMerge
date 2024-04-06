@@ -113,16 +113,36 @@ The notification manager system has 2 specific tasks:
 \subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/account_manager.jpg}
 \subsubsection{Descriptions}
+The account manager system allow users to register, log in, delete account and change account information (like password, name, ecc.).
 
+The specific implementation depends on how the user signed in. for this reason the system has a switch component (``User Manager'')
+that will decide which specific implementation to use for each specific user. Once this is decided the user
+can be handled by one of the 3 components:
+\begin{itemize}
+    \item \textbf{Google User Manager: } 
+    
+    This component will handle all the user that signed in with a google account.
+    \item \textbf{Facebook User Manager: } 
+    
+    This component will handle all the user that signed in with a facebook account.
+    \item \textbf{Custom User Manager: } 
+    
+    This component will handle all the user that register with an email and password.
+\end{itemize}
+Note that we have bundled the database interfaces for managing users into one single interface to enhance readability.
 \subsection{LLM Prompter}
 \subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/llm_prompter.jpg}
 \subsubsection{Descriptions}
+This is a simple component that abstract the detail about the specific LLM that is been used from the rest of the system.
+This is a good practice that can save some time in the future, if we decide to change the LLM that we are using.
+In this example we are using Open AI APIs.
 
 \subsection{Task Tree Navigator}
 \subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_tree_navigator.jpg}
 \subsubsection{Descriptions}
+This component provide some library useful to navigate the task tree. For example it can be used to find all the children of a task, up to a certain depth.
 
 \subsection{Report Manager}
 \subsubsection{Diagram}
