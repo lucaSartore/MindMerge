@@ -18,11 +18,11 @@
 \subsection{Strengths}
 \begin{itemize}
     \item \textbf{Operating in an market that is hyped and growing: }
-    The Artificial intelligence and LLM (large language models) market is currently on everyone's mouth.
-    and is growing fast\dots this would make it easy for our team to find sell the product, and potentially find investors 
+          The Artificial intelligence and LLM (large language models) market is currently on everyone's mouth.
+          and is growing fast\dots this would make it easy for our team to find sell the product, and potentially find investors
 
     \item \textbf{The workplace is getting more and more digital: }
-    In the last decades more and more jobs are getting used to using 
+          In the last decades more and more jobs are getting used to using
 
     \item \textbf{: }
     \item \textbf{: }
@@ -35,6 +35,20 @@
 
 \subsection{Threads}
 
+\section{Functional Requirements}
+\begin{itemize}
+    \item The system must allow owners for the creation of an Organization
+    \item The system must allow Organizations for assigning tasks for their assignees
+    \item Each task should be capable of having multiple subtasks in a tree structure
+    \item Each task must have at least one manager
+    \item Each task must have at least one assignee
+    \item Each task should have a priority option
+    \item Each task should have a deadline option
+    \item Each task should have a state attribute
+    \item Each task should have a manually managed notes section
+    \item 
+\end{itemize}
+
 \section{Components Diagram}
 
 This section illustrate the component diagram of the system. To improve readability we split the components into several sub
@@ -44,24 +58,24 @@ This helps to quickly identify which component is responsible for a specific int
 \newline \newline
 The list of sub components is the following:
 \begin{itemize}
-    \item \textcolor[HTML]{8CC86E}{\textbf{Data Base Manager: }} This component is responsible for managing the data base, it is an interface between 
-            the data base and the rest of the subsystems. The color assigned to this component is \textcolor[HTML]{8CC86E}{green}.
-    \item \textcolor[HTML]{F0C832}{\textbf{Notification Manager: }} This component is responsible for managing the notifications; 
-    This means sending notification, and serve the data to the front end to visualize the pending notification of a user. The color assigned to this component is \textcolor[HTML]{F0C832}{yellow}.
+    \item \textcolor[HTML]{8CC86E}{\textbf{Data Base Manager: }} This component is responsible for managing the data base, it is an interface between
+          the data base and the rest of the subsystems. The color assigned to this component is \textcolor[HTML]{8CC86E}{green}.
+    \item \textcolor[HTML]{F0C832}{\textbf{Notification Manager: }} This component is responsible for managing the notifications;
+          This means sending notification, and serve the data to the front end to visualize the pending notification of a user. The color assigned to this component is \textcolor[HTML]{F0C832}{yellow}.
     \item \textcolor[HTML]{FF0000}{\textbf{Account Manager: }} This component manage accounts, in particular it handles sign in, log in, account changes and account deletion.
-     The color assigned to this component is \textcolor[HTML]{FF0000}{red}.
-    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It's objective is to make the 
-    implementation of the rest of the system agnostic from the specific LLM used. The color assigned to this component is \textcolor[HTML]{64C8BE}{aqua green}.
+          The color assigned to this component is \textcolor[HTML]{FF0000}{red}.
+    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It's objective is to make the
+          implementation of the rest of the system agnostic from the specific LLM used. The color assigned to this component is \textcolor[HTML]{64C8BE}{aqua green}.
     \item \textcolor[HTML]{A0C8F0}{\textbf{Task Tree Navigator: }} This component is a simple library with some algorithm to navigate a tree data structure.
-    In our specific case the tree represent the tasks and subtasks of an organization. Since this algorithms are used many
-    times throughout the system they have been put in a specific component to make them reusable. The color assigned to this component is \textcolor[HTML]{A0C8F0}{light blue}.
+          In our specific case the tree represent the tasks and subtasks of an organization. Since this algorithms are used many
+          times throughout the system they have been put in a specific component to make them reusable. The color assigned to this component is \textcolor[HTML]{A0C8F0}{light blue}.
     \item \textcolor[HTML]{FA9646}{\textbf{Report Manager: }} This component manage the reports, in particular it is responsible for generating report automatically (using an LLM) or manually (reminding users with a notification that they have to deliver a report).
-    The component also allow users to set report schedule, so that the reports generation can be triggered automatically with a customizable frequency.
-    The color assigned to this component is \textcolor[HTML]{FA9646}{orange}.
-    \item \textcolor[HTML]{FF00FF}{\textbf{Organization Manager: }} This component allow an user to create an organization, or perform some action on his organizations, 
-    like adding/removing a user, or paying the subscription to use the software. The color assigned to this component is \textcolor[HTML]{FF00FF}{purple}.
+          The component also allow users to set report schedule, so that the reports generation can be triggered automatically with a customizable frequency.
+          The color assigned to this component is \textcolor[HTML]{FA9646}{orange}.
+    \item \textcolor[HTML]{FF00FF}{\textbf{Organization Manager: }} This component allow an user to create an organization, or perform some action on his organizations,
+          like adding/removing a user, or paying the subscription to use the software. The color assigned to this component is \textcolor[HTML]{FF00FF}{purple}.
     \item \textcolor[HTML]{2682D5}{\textbf{Task Manager: }} This component allow users to interact with the tasks.
-    In particular it is responsible to visualize, create, delete and edit tasks inside one organization. The color assigned to this component is \textcolor[HTML]{2682D5}{blue}.
+          In particular it is responsible to visualize, create, delete and edit tasks inside one organization. The color assigned to this component is \textcolor[HTML]{2682D5}{blue}.
     \item \textbf{Front End: } This component is responsible for the visualization of the data, and the interaction with the user. This component dose not have a specific color assigned to it, since it dose not provide any interface to other components.
     \item \textcolor[HTML]{E68CB4}{\textbf{External APIs: }} All interfaces provided by external APIs in the system (like authentication, payment, etc.) are painted with the color \textcolor[HTML]{E68CB4}{pink}.
 \end{itemize}
@@ -84,28 +98,28 @@ database (like authentication, api version ecc.)
 The notification manager system has 2 specific tasks:
 \begin{itemize}
     \item Allowing other components to send notification to users.
-    
-        This is done by the ``send notification'' interface
+
+          This is done by the ``send notification'' interface
     \item Allow a user to visualize pending notification in the front end
-    
-        This id done by the other 4 interfaces
+
+          This id done by the other 4 interfaces
 \end{itemize}
 
-    The system is composed of 3 different component
+The system is composed of 3 different component
 \begin{itemize}
-    \item \textbf{Generic Notification Manager: } 
+    \item \textbf{Generic Notification Manager: }
 
-    This component is the one that provided the ``Send Notification'' interface, and it only act as
-    a switch. The system allow for notification to be sent either via mail, or with an in-app notification.
-    When a notification comes in to be send this component will decide where to send it.
-    \item \textbf{External Notification Manager: } 
-    
-    This component will send a mail with a notification to a specific user.
-    This component has various external APIs connected to it, as how the notification is sent will depend on how the user signed In.
-    \item \textbf{Internal Notification Manager: } 
+          This component is the one that provided the ``Send Notification'' interface, and it only act as
+          a switch. The system allow for notification to be sent either via mail, or with an in-app notification.
+          When a notification comes in to be send this component will decide where to send it.
+    \item \textbf{External Notification Manager: }
 
-    This component manage the in-app notifications. It can either be asked to send a notification (in this case it writes it in the database)
-    or it can be asked to get a notification by the front end, so that it can be visualized (in this case it reads the necessary data from the database)
+          This component will send a mail with a notification to a specific user.
+          This component has various external APIs connected to it, as how the notification is sent will depend on how the user signed In.
+    \item \textbf{Internal Notification Manager: }
+
+          This component manage the in-app notifications. It can either be asked to send a notification (in this case it writes it in the database)
+          or it can be asked to get a notification by the front end, so that it can be visualized (in this case it reads the necessary data from the database)
 
 \end{itemize}
 
@@ -119,15 +133,15 @@ The specific implementation depends on how the user signed in. For this reason t
 that will decide which specific implementation to use for each specific user. Once this is decided the user
 can be handled by one of the 3 components:
 \begin{itemize}
-    \item \textbf{Google User Manager: } 
-    
-    This component will handle all the user that signed in with a google account.
-    \item \textbf{Facebook User Manager: } 
-    
-    This component will handle all the user that signed in with a facebook account.
-    \item \textbf{Custom User Manager: } 
-    
-    This component will handle all the user that register with an email and password.
+    \item \textbf{Google User Manager: }
+
+          This component will handle all the user that signed in with a google account.
+    \item \textbf{Facebook User Manager: }
+
+          This component will handle all the user that signed in with a facebook account.
+    \item \textbf{Custom User Manager: }
+
+          This component will handle all the user that register with an email and password.
 \end{itemize}
 Note that we have bundled the database interfaces for managing users into one single interface to enhance readability.
 \subsection{LLM Prompter}
@@ -158,5 +172,10 @@ This component provide some library useful to navigate the task tree. For exampl
 \subsubsection{Diatgram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
 \subsubsection{Descriptions}
+
+\section{Use Case Diagram}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/UseCaseDiagram.jpg}
+
 
 \end{document}
