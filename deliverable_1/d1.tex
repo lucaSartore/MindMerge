@@ -69,23 +69,40 @@
 \end{itemize}
 
 \section{Non-functional Requirements}
+\subsection{Performance}
+\begin{itemize}
+    \item The software should implement tools for performance monitoring
+    \item The automatic report generation should take at most 3 seconds for each level of the task tree
+    \item Notifications should be sent in less than 5 minutes from the happening of the triggering event
+\end{itemize}
+
+\subsection{Reliability}
+\begin{itemize}
+    \item The system should have minimum downtime and at least 99\% uptime
+    \item The system should implement a way to avoid collisions if two or more users try to edit the same task simultaneously
+    \item The automatic report generation should implement a system to prevent chatbot hallucination
+\end{itemize}
+
+\subsection{Usability}
 \begin{itemize}
     \item The software and the UI should be easy to understand and friendly to use
-    \item The system should have minimum downtime and at least 99\% uptime
-    \item The system should allow users to see and edit only tasks they are entitled to use
+    \item The automatically generated report should be as accurate as possible
+\end{itemize}
+
+\subsection{Scalability}
+\begin{itemize}
     \item The system should be able to manage at least 100.000 users simultaneously
     \item The system should be able to manage at least 10.000.000 non-simultaneous users
-    \item The software should implement tools for performance monitoring
     \item The system should be able to manage a task tree with at least 1000 tasks
     \item The system should be able to manage a task tree with an height of at least 10 levels
-    \item The system should implement a way to avoid collisions if two or more users try to edit the same task simultaneously
+\end{itemize}
+
+\subsection{Security}
+\begin{itemize}
+    \item The system should allow users to see and edit only tasks they are entitled to use
     \item Authentication procedure should rely on string encryption mechanisms
     \item The password recovery system should not compromise security
     \item A company's data should be encrypted in the database in order to avoid data leak in case of security breaches
-    \item The automatic report generation should take at most 3 seconds for each level of the task tree
-    \item The automatic report generation should implement a system to prevent chatbot hallucination
-    \item The automatically generated report should be as accurate as possible
-    \item Notifications should be sent in less than 5 minutes from the happening of the triggering event
 \end{itemize}
 
 \section{Use Case Diagram}
