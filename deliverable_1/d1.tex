@@ -222,12 +222,40 @@ The system is composed of 5 different components:
 
 \subsection{Task Manager}
 \subsubsection{Diatgram}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_manager.jpg}
+\begin{center}
+    \includegraphics[width=5.5in,keepaspectratio]{images/component_diagram/task_manager.jpg}
+\end{center}
 \subsubsection{Descriptions}
+
+The task manager is the component that allow users to interact with the tasks.
+The interaction are divided in 3 main categories:
+\begin{itemize}
+    \item \textbf{Task Creation: }
+    
+    This is the process of creating a new task. That include operations like 
+    setting the task name, the father task, the assignees, the managers ecc.
+    This operations are handled by the ``Task Creator'' component.
+    \item \textbf{Task Modification: }
+    This is the process of modifying an existing task. That include operations like adding a descriptions or some notes,
+    changing state, deadline assignee ecc; or even deleting the task.
+    This operations are handled by the ``Task Editor'' component.
+    \item \textbf{Task Reading Operation: }
+    This process is responsible for reading the task data from the database, and then serve it to the front end.
+    This operations are handled by the ``Task Getter'' component.
+\end{itemize}
 
 \subsection{Front End}
 \subsubsection{Diatgram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
 \subsubsection{Descriptions}
-
+In the front end diagram we decided to create one component for every page of the application, for a total of 7 components:
+\begin{itemize}
+    \item \textbf{Sign In Page: } In this page the users will be able to sign in to the application.
+    \item \textbf{Sign Up Page: } In this page the users will be able to sign up for the application
+    \item \textbf{Home Page: } This is the main page of the application, where the user will be able to see/edit/create all the tasks of the organization.
+    \item \textbf{Report Page: } This page will allow users to ask for a report, or set up a Periodic Report.
+    \item \textbf{Notification View: } This page will allow users to see all the pending notifications.
+    \item \textbf{Organization View: } This page will allow the organization owner to manage the organization, including things like adding/removing users, or paying the subscription.
+    \item \textbf{Account View: } This page will allow the user to manage his account, including things like changing the password, or deleting the account.
+\end{itemize}
 \end{document}
