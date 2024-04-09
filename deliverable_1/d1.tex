@@ -109,7 +109,29 @@
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/UseCaseDiagram.jpg}
 
 \section{Context Diagram}
+This section illustrates the context diagram of the system and describes the relations between MindMerge and two different kinds of external entities.
+
+\subsection{Diagram}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/context_diagram.jpeg}
+
+\subsection{Subordinate systems}
+External softwares that are used by MindMerge to provide services to the users.
+\begin{itemize}
+    \item Google Authenticator and Facebook: they are used to give to users the possibility to log in using their Google or Facebook account. Allowing third party authentication, the system doesn't force user to create a new MindMerge account.
+    \item Payment System: it is used to allow organisation's owner to pay for the system's subscription.
+    \item OpenAI APIs: they are used, on manager request, to generate an automatic report of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
+    \item Gmail: it is used as part of the notification system to notify creation of new tasks or updates to the existing ones via mail.
+\end{itemize}
+
+\subsection{Actors}
+Users that interact with the system and are able to use some of its functionalities.
+\begin{itemize}
+    \item Anonymous user: A user that has not yet authenticated into the system. He is able to access login functionalities, also by using subordinate systems provided for that, to sign up in case he doesn't have an existing account or to recover password in case he isn't able to remember it.
+    \item Authenticated user: A user that has completed authentication procedure and is logged into the system. He has the possibility to logout in every moment, becoming an anonymous user.
+    \item Owner: A user that is the head of a specific organization. He has the possibility to create an organization (including the payment of the subscription using the external payment system) and add or remove users to or from that. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
+    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and doing some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is himself an assignee, so he also has all the possibilities related to that role.
+    \item Assignee: A user that is required to complete a specific task by a manager. He has the possibility to edit the task's status, to notify the manager that he has done something he was asked to do, or to add notes, in order to communicate something related to what he did.
+\end{itemize}
 
 \section{Components Diagram}
 
