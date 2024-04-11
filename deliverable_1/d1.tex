@@ -327,6 +327,28 @@ The interaction are divided in 3 main categories:
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/organization_manager.jpg}
 \subsubsection{Descriptions}
 
+The organization manager has 3 main tasks:
+\begin{itemize}
+    \item \textbf{Allowing the manager to pay a subscription}
+
+    The manager should be able to pay the subscription of our software, this is done by the component ``Payment Manager''.
+    The component has 2 subordinate components:
+    \begin{itemize}
+        \item \textbf{Price Calculator: } This component calculate the price the owner should pay based on the number of users in the organization
+        \item \textbf{Payment System: } This component is used to connect with the necessary banking system to handle payments
+    \end{itemize}
+
+    \item \textbf{Permission Verificator}
+
+    This component is responsible for allowing or denying users actions. it will consider the permissions set in the task by connecting to the database,
+    and it will also consider the validity of a license, so we can limit certain actions if the owner hasn't renewed the subscription.
+
+    \item \textbf{User Manager}
+    
+    This component is the one that will allow an owner to add or remove users form his organization.
+\end{itemize}
+
+
 \subsection{Front End}
 \subsubsection{Diatgram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
