@@ -179,14 +179,14 @@ The list of sub components is the following:
 
 \subsection{Data Base Manager}
 \subsubsection{Diagram}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/data_base_manager.jpg}
+\begin{center}
+\includegraphics[width=5in,height=\textheight,keepaspectratio]{images/component_diagram/data_base_manager.jpg}
+\end{center}
 \subsubsection{Descriptions}
 
 We have model the system with 3 particular objects (tasks, users and organizations).
 The database manager has a specific component to manage each one of them. The interfaces provided
-are divided fot the kind of action that needs to be performed (creation, deletion, modification or read operations).\newline
-The ``Database Connector'' component is used to hide the all the specific and superfluous detail about connecting to a
-database (like authentication, api version ecc.)
+are divided fot the kind of action that needs to be performed (creation, deletion, modification or read operations).
 
 \subsection{Notification Manager}
 \subsubsection{Diagram}
@@ -282,11 +282,13 @@ The system is composed of 5 different components:
     
     This component is the one that provided the ``Generate Report'' interface, and it only act as a switch, That 
     will forward the request to the correct component (manual or automatic report generator).
+    The component also verify that the user has the permissions to ask for the report
 
     \item \textbf{Periodic Report Editor: }
 
     This component is responsible for managing the report schedule.
     It will allow users to set the frequency of the scheduled reports, as well as to edit or delete them.
+    Every time an operation is requested this component will verify the user's permission before executing the request.
 
     \item \textbf{Periodic Report Handler: }
     
@@ -306,14 +308,14 @@ The task manager is the component that allow users to interact with the tasks.
 The interaction are divided in 3 main categories:
 \begin{itemize}
     \item \textbf{Task Creation: }
-    
     This is the process of creating a new task. That include operations like 
     setting the task name, the father task, the assignees, the managers ecc.
     This operations are handled by the ``Task Creator'' component.
     \item \textbf{Task Modification: }
     This is the process of modifying an existing task. That include operations like adding a descriptions or some notes,
     changing state, deadline assignee ecc; or even deleting the task.
-    This operations are handled by the ``Task Editor'' component.
+    This operations are handled by the ``Task Editor'' component; This component will also send a notification to the manager of the task
+    if the notification are enabled for the particular task.
     \item \textbf{Task Reading Operation: }
     This process is responsible for reading the task data from the database, and then serve it to the front end.
     This operations are handled by the ``Task Getter'' component.
