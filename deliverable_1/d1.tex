@@ -37,35 +37,43 @@
 
 \section{Functional Requirements}
 \begin{itemize}
-    \item The system must allow owners for the creation of an Organization
-    \item The system must allow Organizations for assigning tasks for their assignees
+    \item NOTA: AGGIUNGI SIGN-IN, SIGN-OUT E DELETE ACCOUNT
+    \item The system must allow users to create an Organization, and therefore becoming its owner
+    \item The system must allow Organizations to assign tasks for their assignees
     \item Each task should be capable of having multiple subtasks in a tree structure
     \item Each task must have at least one manager
     \item Each task must have at least one assignee
+    \item Each task should have a title
+    \item Each task should have a description
     \item Each task should have a priority option
     \item Each task should have a deadline option
     \item Each task should have a state attribute
     \item Each task should have a manually managed notes section
-    \item The system must allow users to be added to groups
-    \item Each task must implement a permission system
+    \item Each task should have the possibility to be deleted by its managers
+    \item Users shall be able to see all the tasks assigned/managed to them in a tree structure
+    \item Each user shall be able to edit all the tasks that are assigned/managed by him
+    \item The system must implement a permission mechanism
+    \item The permission mechanism shall be customizable by each task
     \item The permission system must implement various visibility and modification options
     \item The system must enforce task permissions to each user
     \item The application must provide a manual report option
     \item The manual reports must be done by users
     \item The application must provide an automatic report option
     \item The automatic reports must be based off of user notes and reports
-    \item The automatic reports must be created by the systemrichiedere chiarimento
-    \item The system must use LLM systems for the creation of automatic reports
+    \item The automatic reports must be created by the system using LLM technology
     \item The system must allow managers to request reports manually
     \item The system must allow managers to request reports automatically
-    \item Managers must be able to set and edit the automatic reports request frequency
-    \item The system must implement a Notification system
-    \item The notification system must be available by both assignees and managers
-    \item The notification system must show report requests issued by managers
-    \item The notification system must show task completition pings to each appropriate member of a task
-    \item The notification system must show help and clarification messages issued by assignees
-    \item The system must allow its users the option for enabling the notification
-    \item The system must allow its users the option for disabling the notification
+    \item The system must implement a mechanism that allow managers to schedule manual or automatic report requests
+    \item When a manager schedules a report he shall be able to set a time and a frequency
+    \item When a manager schedules a report he shall be able to delete it
+    \item A manager shall be able to see a list containg all the reports of a specific task
+    \item The system must implement a Notification dashboard
+    \item Each user can mark messages as read, unread, or even deleting them
+    \item The notification dashboard must be available by both assignees and managers
+    \item The notification dashboard must show report requests issued by managers
+    \item The notification dashboard must show task completition pings to each appropriate member of a task
+    \item The system must allow its users the option for enabling notifications
+    \item The system must allow its users the option for disabling notifications
 \end{itemize}
 
 \section{Components Diagram}
