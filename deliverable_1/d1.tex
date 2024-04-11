@@ -76,6 +76,71 @@
     \item The system must allow its users the option for disabling notifications
 \end{itemize}
 
+\section{Non-functional Requirements}
+\subsection{Performance}
+\begin{itemize}
+    \item The software should implement tools for performance monitoring
+    \item The automatic report generation should take at most 3 seconds for each level of the task tree
+    \item Notifications should be sent in less than 5 minutes from the happening of the triggering event
+\end{itemize}
+
+\subsection{Reliability}
+\begin{itemize}
+    \item The system should have minimum downtime and at least 99\% uptime
+    \item The system should implement a way to avoid collisions if two or more users try to edit the same task simultaneously
+    \item The automatic report generation should implement a system to prevent chatbot hallucination
+\end{itemize}
+
+\subsection{Usability}
+\begin{itemize}
+    \item The software and the UI should be easy to understand and friendly to use
+    \item The automatically generated report should be as accurate as possible
+\end{itemize}
+
+\subsection{Scalability}
+\begin{itemize}
+    \item The system should be able to manage at least 100.000 users simultaneously
+    \item The system should be able to manage at least 10.000.000 non-simultaneous users
+    \item The system should be able to manage a task tree with at least 1000 tasks
+    \item The system should be able to manage a task tree with an height of at least 10 levels
+\end{itemize}
+
+\subsection{Security}
+\begin{itemize}
+    \item The system should allow users to see and edit only tasks they are entitled to use
+    \item Authentication procedure should rely on string encryption mechanisms
+    \item The password recovery system should not compromise security
+    \item A company's data should be encrypted in the database in order to avoid data leak in case of security breaches
+\end{itemize}
+
+\section{Use Case Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/UseCaseDiagram.jpg}
+
+\section{Context Diagram}
+This section illustrates the context diagram of the system and describes the relations between MindMerge and two different kinds of external entities.
+
+\subsection{Diagram}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/context_diagram.jpeg}
+
+\subsection{Subordinate systems}
+External softwares that are used by MindMerge to provide services to the users.
+\begin{itemize}
+    \item Google Authenticator and Facebook: they are used to give to users the possibility to log in using their Google or Facebook account. Allowing third party authentication, the system doesn't force user to create a new MindMerge account.
+    \item Payment System: it is used to allow organisation's owner to pay for the system's subscription.
+    \item OpenAI APIs: they are used, on manager request, to generate an automatic report of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
+    \item Gmail: it is used as part of the notification system to notify creation of new tasks or updates to the existing ones via mail.
+\end{itemize}
+
+\subsection{Actors}
+Users that interact with the system and are able to use some of its functionalities.
+\begin{itemize}
+    \item Anonymous user: A user that has not yet authenticated into the system. He is able to access login functionalities, also by using subordinate systems provided for that, to sign up in case he doesn't have an existing account or to recover password in case he isn't able to remember it.
+    \item Authenticated user: A user that has completed authentication procedure and is logged into the system. He has the possibility to logout in every moment, becoming an anonymous user.
+    \item Owner: A user that is the head of a specific organization. He has the possibility to create an organization (including the payment of the subscription using the external payment system) and add or remove users to or from that. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
+    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and doing some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is himself an assignee, so he also has all the possibilities related to that role.
+    \item Assignee: A user that is required to complete a specific task by a manager. He has the possibility to edit the task's status, to notify the manager that he has done something he was asked to do, or to add notes, in order to communicate something related to what he did.
+\end{itemize}
+
 \section{Components Diagram}
 
 This section illustrate the component diagram of the system. To improve readability we split the components into several sub
@@ -189,20 +254,78 @@ This component provide some library useful to navigate the task tree. For exampl
 \subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/report_manager.jpg}
 \subsubsection{Descriptions}
+The report manager have two main tasks:
+\begin{itemize}
+    \item Generating reports (both manually and automatically) 
+    \item Managing the report schedule 
+\end{itemize}
+
+The system is composed of 5 different components:
+
+\begin{itemize}
+    \item \textbf{Manual Report Generator: }
+
+    This component is responsible for generating manual reports. A manual report is a report that ir generated by a user, and not by the system.
+    So in practice this component will just remind the user that he has to deliver a report.
+    \item \textbf{Automatic Report Generator: }
+
+    This component is responsible for generating automatic reports. An automatic report is a report that is generated ry the system,
+    using an LLM. This component will use some LLM APIs, as well as the data that it could find in the database to generate the report, and then it will deliver It
+    to the user how requested it, using the notification system.
+
+    \item \textbf{Generic Report Generator: }
+    
+    This component is the one that provided the ``Generate Report'' interface, and it only act as a switch, That 
+    will forward the request to the correct component (manual or automatic report generator).
+
+    \item \textbf{Periodic Report Editor: }
+
+    This component is responsible for managing the report schedule.
+    It will allow users to set the frequency of the scheduled reports, as well as to edit or delete them.
+
+    \item \textbf{Periodic Report Handler: }
+    
+    This component is responsible for handling the scheduled reports.
+    It will read the schedule from the database, and then it will trigger a report generation event when the time comes.
+
+\end{itemize}
 
 \subsection{Task Manager}
 \subsubsection{Diatgram}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_manager.jpg}
+\begin{center}
+    \includegraphics[width=5.5in,keepaspectratio]{images/component_diagram/task_manager.jpg}
+\end{center}
 \subsubsection{Descriptions}
+
+The task manager is the component that allow users to interact with the tasks.
+The interaction are divided in 3 main categories:
+\begin{itemize}
+    \item \textbf{Task Creation: }
+    
+    This is the process of creating a new task. That include operations like 
+    setting the task name, the father task, the assignees, the managers ecc.
+    This operations are handled by the ``Task Creator'' component.
+    \item \textbf{Task Modification: }
+    This is the process of modifying an existing task. That include operations like adding a descriptions or some notes,
+    changing state, deadline assignee ecc; or even deleting the task.
+    This operations are handled by the ``Task Editor'' component.
+    \item \textbf{Task Reading Operation: }
+    This process is responsible for reading the task data from the database, and then serve it to the front end.
+    This operations are handled by the ``Task Getter'' component.
+\end{itemize}
 
 \subsection{Front End}
 \subsubsection{Diatgram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
 \subsubsection{Descriptions}
-
-\section{Use Case Diagram}
-
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/UseCaseDiagram.jpg}
-
-
+In the front end diagram we decided to create one component for every page of the application, for a total of 7 components:
+\begin{itemize}
+    \item \textbf{Sign In Page: } In this page the users will be able to sign in to the application.
+    \item \textbf{Sign Up Page: } In this page the users will be able to sign up for the application
+    \item \textbf{Home Page: } This is the main page of the application, where the user will be able to see/edit/create all the tasks of the organization.
+    \item \textbf{Report Page: } This page will allow users to ask for a report, or set up a Periodic Report.
+    \item \textbf{Notification View: } This page will allow users to see all the pending notifications.
+    \item \textbf{Organization View: } This page will allow the organization owner to manage the organization, including things like adding/removing users, or paying the subscription.
+    \item \textbf{Account View: } This page will allow the user to manage his account, including things like changing the password, or deleting the account.
+\end{itemize}
 \end{document}
