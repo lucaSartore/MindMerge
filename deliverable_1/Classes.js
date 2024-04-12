@@ -276,11 +276,11 @@ class taskManager extends dataBaseManager{
     /**
      * Create a new task in the database, the id of the task will be automatically generated
      * return the id of the task created
+     * @param {number} organizationId
      * @param {Task} task 
      * @returns {CustomResponse<number>}
      */
-    createTask(task){
-        return x
+    createTask(organizationId, task){
     }
     
     /**
@@ -288,22 +288,23 @@ class taskManager extends dataBaseManager{
      * The note's date will be automatically set to the current time in the server
      * The note's id will be automatically generated
      * Return the id of the note created
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {string} notes 
      * @returns {CustomResponse<number>}
      */
-    createTaskNotes(taskId, notes){
+    createTaskNotes(organizationId, taskId, notes){
     }
 
     /**
      * Create a new report schedule for the desired task
      * return the id of the report schedule
+     * @param {number} organizationId
      * @param {*} taskId 
      * @param {*} taskReportSchedule 
      * @returns {CustomResponse<number>}
      */
-    createTaskReportSchedule(taskId, taskReportSchedule){
-
+    createTaskReportSchedule(organizationId, taskId, taskReportSchedule){
     }
     
 
@@ -311,121 +312,246 @@ class taskManager extends dataBaseManager{
 
     /**
      * Update the task with the given id with the new task that is passed
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {Task} newTask 
      * @returns {Response}
      */
-    updateTask(taskId, newTask){
+    updateTask(organizationId, taskId, newTask){
     }
 
     /**
      * Update the last updated date of the task with the given id to the current time in the server 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @returns {CustomResponse<void>}
      */
-    updateTaskLastUpdated(taskId){
+    updateTaskLastUpdated(organizationId, taskId){
     }
 
     /**
      * Update the name of the task with the given id to the new name that is passed
+     * @param {number} organizationId
      * @param {number} taskId
      * @param {string} newName
      * @returns {CustomResponse<void>}
      */
-    updateTaskName(taskId, newName){
+    updateTaskName(organizationId, taskId, newName){
     }
 
     /**
      * Update the description of the task with the given id to the new description that is passed
+     * @param {number} organizationId
      * @param {number} taskId
      * @param {string} newDescription
      * @returns {CustomResponse<void>}
      */
-    updateTaskDescription(taskId, newDescription){
-
+    updateTaskDescription(organizationId, taskId, newDescription){
     }
 
     /**
      * Update the status of the task with the given id to the new status that is passed 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {number} newStatus 
      */
-    updateTaskStatus(taskId, newStatus){
-
+    updateTaskStatus(organizationId, taskId, newStatus){
     }
 
     /**
      * Update the notes of a task.
      * The note's date will be automatically set to the current time in the server 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {number} noteId 
      * @param {string} newNotes 
      * @returns {CustomResponse<void>}
      */
-    updateTaskNotes(taskId, noteId, newNotes){
+    updateTaskNotes(organizationId, taskId, noteId, newNotes){
     }
 
     /**
      * Update the assignees of the task with the given id to the new assignees that are passed 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {number[]} assignees 
      * @returns {CustomResponse<void>}
      */
-    updateTaskAssignees(taskId, assignees){
+    updateTaskAssignees(organizationId, taskId, assignees){
     }
 
     /**
      * Add a new assignee to the task, if it doesn't exist already
+     * @param {number} organizationId
      * @param {number} taskId 
      * @param {number} assignee 
      * @returns {CustomResponse<void>}
      */
-    addNewAssignee(taskId, assignee){
+    addNewAssignee(organizationId, taskId, assignee){
     }
 
     /**
      * Update the manager of the task with the given id to the new manager that is passed
+     * @param {number} organizationId
      * @param {number} taskId
      * @param {number} newManager
      * @returns {CustomResponse<void>}
      */
-    updateTaskManager(taskId, newManager){
+    updateTaskManager(organizationId, taskId, newManager){
+    }
+
+    /**
+     * Update specified task report schedule 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} reportId 
+     * @param {TaskReportSchedule} newReport 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskReport(organizationId, taskId, reportId, newReport){
     }
 
     /**
      * Enable the notifications for the task with the given id 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @returns {CustomResponse<void>}
      */
-    enableNotification(taskId){
+    enableNotification(organizationId, taskId){
     }
     
     /**
      * Disable the notifications for the task with the given id 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @returns {CustomResponse<void>}
      */
-    disableNotification(taskId){
-
+    disableNotification(organizationId, taskId){
     }
 
     //////////////////////////// Deleting ////////////////////////////
 
     /**
-     * Delete the note with the given id from the task with the given id
-     */
-
-    /**
      * Delete the task with the given id 
+     * @param {number} organizationId
      * @param {number} taskId 
      * @returns {Response}
      */
-    deleteTask(taskId){
+    deleteTask(organizationId, taskId){
     }
 
+    /**
+     * Delete the note with the given id from the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} noteId
+     * @returns {CustomResponse<void>}
+     */
+    deleteTaskNotes(organizationId, taskId, noteId){
+    }
 
+    /**
+     * Delete the assignee with the given id from the task with the given id
+     * Can return an error if you are trying to delete the last assignee of the task
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} assigneeId
+     * @returns {CustomResponse<void>}
+     */
+    deleteTaskAssignee(organizationId, taskId, assigneeId){
+    } 
+
+    /**
+     * Delete the report with the given id from the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} reportId 
+     */
+    deleteTaskReportSchedule(organizationId, taskId, reportId){
+    }
 
     //////////////////////////// Reading ///////////////////////////
+    
+    /**
+     * Return one single task
+     * @param {number} organizationId 
+     * @param {number} takId 
+     * @returns {CustomResponse<Task>}
+     */
+    readTask(organizationId, taskId){
+    }
+   
+    /**
+     * return a list, containing all the task trees that a user can see inside one organization 
+     * @param {number} organizationId 
+     * @param {number} userId 
+     * @returns {CustomResponse<TaskTree[]>}
+     */
+    readTaskTreesForUser(organizationId, userId){
+    }
 }
 
 
+class userManager extends dataBaseManager{
+
+    //////////////////////////// Creation ////////////////////////////
+
+    /**
+     * Create a new user in the database, the id of the user will be automatically generated
+     * return the id of the user created
+     * @param {User} user 
+     * @returns {CustomResponse<number>}
+     */
+    createUser(user){
+    }
+   
+    //////////////////////////// Updating ////////////////////////////
+
+    /**
+     * Update the name of the user with the given id to the new name that is passed
+     * @param {number} userId
+     * @param {string} newName
+     * @returns {CustomResponse<void>}
+     */
+    updateUserName(userId, newName){
+    }
+
+    /**
+     * Add a user to an organization
+     * @param {number} organizationId
+     * @param {number} userId 
+     * @returns {CustomResponse<void>}
+     */
+    addUserToOrganization(organizationId, userId){
+    }
+
+    //////////////////////////// Deleting ////////////////////////////
+
+    /**
+     * Delete the user with the given id 
+     * @param {number} userId 
+     * @returns {CustomResponse<void>}
+     */
+    deleteUser(userId){
+    }
+    
+
+    /**
+     * Remove a user from an organization
+     * @param {number} organizationId
+     * @param {number} userId 
+     * @returns {CustomResponse<void>}
+     */
+    removeUserFromOrganization(organizationId, userId){
+    }
+
+
+    //////////////////////////// Reading ///////////////////////////
+    /**
+     * Return one single user
+     * @param {number} userId
+     * @returns {CustomResponse<User>}
+     */
+    readUser(userId){
+    }
+}
