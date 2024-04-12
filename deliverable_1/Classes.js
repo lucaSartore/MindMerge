@@ -13,7 +13,7 @@ class TaskTree{
 
     /**
      * @param {number} taskId 
-     */
+    */
     constructor(taskId){
         this.taskId = taskId;
         this.childTasks = [];
@@ -77,6 +77,7 @@ const ReportFrequency = {
  * @property {number} reportType - The type of the report
  * @property {number} reportFrequency - The frequency of the report
  * @property {Date} nextReportDate - The date when the report begins
+ * @property {string} reportPrompt - The prompt/question for the report
  */
 class TaskReportSchedule{
     /**
@@ -85,14 +86,15 @@ class TaskReportSchedule{
      * @param {number} reportType
      * @param {number} reportFrequency
      * @param {Date} nextReportDate 
+     * @param {string} reportPrompt
     */
-    constructor(taskId, reportScheduleId, reportType, reportFrequency, nextReportDate ){
+    constructor(taskId, reportScheduleId, reportType, reportFrequency, nextReportDate, reportPrompt){
         this.taskId = taskId;
         this.reportScheduleId = reportScheduleId;
         this.reportType = reportType;
         this.reportFrequency = reportFrequency;
         this.nextReportDate = nextReportDate ;
-        // TODO: add report question
+        this.reportPrompt = reportPrompt;
     }
 }
 
@@ -106,10 +108,11 @@ class TaskReportSchedule{
  * @property {string} taskDescription - The description of the task
  * @property {number} taskStatus - The status of the task
  * @property {TaskNote[]} taskNotes - The notes of the task
- * @property {number} taskAssignee - The id of the assignee // TODO: change to array
+ * @property {number[]} taskAssignees - A list containing the ids of the assignees for the current task 
  * @property {number} taskManager - The id of the manager 
  * @property {number} taskOrganization - The id of the organization 
  * @property {TaskReportSchedule[]} taskReports - The reports of the task
+ * @property {bool} notificationEnable - whether to send notification to the manager when the status of the task changes or not
  */
 class Task{
     /**
@@ -121,9 +124,10 @@ class Task{
      * @param {string} taskDescription 
      * @param {number} taskStatus 
      * @param {TaskNote[]} taskNotes 
-     * @param {number} taskAssignee 
+     * @param {number | number[]} taskAssignee 
      * @param {number} taskManager 
      * @param {TaskReportSchedule[]} taskReports
+     * @param {bool} notificationEnable
      */
     constructor(
         taskId,
@@ -137,6 +141,7 @@ class Task{
         taskAssignee,
         taskManager,
         taskReports,
+        notificationEnable
     ){
         this.taskId = taskId;
         this.taskFatherId = taskFatherId;
@@ -146,9 +151,14 @@ class Task{
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
         this.taskNotes = taskNotes;
-        this.taskAssignee = taskAssignee;
+        if(taskAssignee.constructor === Array){
+            this.taskAssignees = taskAssignee;
+        }else{
+            this.taskAssignees = [taskAssignee];
+        }
         this.taskManager = taskManager;
         this.taskReports = taskReports;
+        this.notificationEnable = notificationEnable;
     }
 }
 
