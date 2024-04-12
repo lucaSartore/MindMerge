@@ -20,7 +20,7 @@ class TaskTree{
     }
 }
 
-const TaskStatus = {
+const TASK_STATUS = {
     Idea: 1,
     Planned: 2,
     InProgress: 3,
@@ -54,12 +54,12 @@ class TaskNote{
     }
 }
 
-const ReportType = {
+const REPORT_TYPE = {
     Manual: 1,
     Automatic: 2,
 }
 
-const ReportFrequency = {
+const REPORT_FREQUENCY = {
     Daily: 1,
     Weekly: 2,
     Monthly: 3,
@@ -212,23 +212,36 @@ class Organization{
     }
 }
 
+
+const USER_KIND = {
+    Custom: 1,
+    Google: 2,
+    Facebook: 3
+}
+
 /**
  * @typedef User
  * @type {Object}
  * @property {number} userId - The id of the user
  * @property {string} userName - The name of the user
  * @property {number[]} organizations - The ids of the organizations that the user is in
+ * @property {number} userKind - The kind of the user (Custom, Google, Facebook)
+ * @param {string} email - The email of the user
  */
 class User{
     /**
      * @param {number} userId
      * @param {string} userName
      * @param {number[]} organizations
+     * @param {number} userKind
+     * @param {string} email
      */
-    constructor(userId, userName, organizations){
+    constructor(userId, userName, organizations, userKind, email){
         this.userId = userId;
         this.userName = userName;
         this.organizations = organizations;
+        this.userKind = userKind;
+        this.email = email;
     }
 }
 
