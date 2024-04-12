@@ -193,6 +193,7 @@ class Notification{
  * @property {string} organizationName - The name of the organization
  * @property {number[]} userIds - The ids of the users in the organization
  * @property {boolean} licenseValid - If the license of the organization is valid
+ * @property {Date} licenseExpirationDate - The date when the license expires
  * @property {number} ownerId - The id of the owner of the organization
  */
 class Organization{
@@ -201,13 +202,15 @@ class Organization{
      * @param {string} organizationName 
      * @param {number[]} userIds 
      * @param {boolean} licenseValid 
+     * @param {Date} licenseExpirationDate
      * @param {number} ownerId
      */
-    constructor(organizationId, organizationName, userIds, licenseValid, ownerId){
+    constructor(organizationId, organizationName, userIds, licenseValid, licenseExpirationDate ,ownerId){
         this.organizationId = organizationId;
         this.organizationName = organizationName;
         this.userIds = userIds;
         this.licenseValid = licenseValid;
+        this.licenseExpirationDate = licenseExpirationDate;
         this.ownerId = ownerId;
     }
 }
@@ -244,6 +247,37 @@ class User{
         this.email = email;
     }
 }
+
+/**
+ * @typedef GoogleUserInfo
+ * @type {Object}
+ */
+class GoogleUserInfo{
+    constructor(){
+    }
+}
+
+/**
+ * @typedef FacebookUserInfo
+ * @type {Object}
+ */
+class FacebookUserInfo{
+    constructor(){
+    }
+}
+
+/**
+ * @typedef CustomUserInfo
+ * @type {Object}
+ */
+class CustomUserInfo{
+    constructor(){
+    }
+}
+
+
+
+//////////////////////// Response ////////////////////////
 
 /**
  * Represents a generic response with a status code and payload.
@@ -566,5 +600,92 @@ class userManager extends dataBaseManager{
      * @returns {CustomResponse<User>}
      */
     readUser(userId){
+    }
+
+
+    ////////////////////////// Authentication ////////////////////////
+
+    /**
+     * @param {number} userId 
+     * @param {CustomUserInfo} customUserInfo 
+     * @returns {CustomResponse<void>}
+     */
+    CreateCustomUserInfo(userId, customUserInfo){
+    }
+
+    /**
+     * @param {number} userId 
+     * @param {FacebookUserInfo} facebookUserInfo 
+     * @returns {CustomResponse<void>}
+     */
+    CreateFacebookUserInfo(userId, facebookUserInfo){
+    }
+
+    /**
+     * @param {number} userId 
+     * @param {GoogleUserInfo} googleUserInfo 
+     * @returns {CustomResponse<void>}
+     */
+    CreateGoogleUserInfo(userId, googleUserInfo){
+    }
+
+    /**
+     * @param {number} userId 
+     * @returns {CustomResponse<CustomUserInfo>}
+     */
+    readCustomUserInfo(userId){
+    }
+
+    /**
+     * @param {number} userId 
+     * @returns {CustomResponse<FacebookUserInfo>}
+     */
+    readFacebookUserInfo(userId){
+    }
+
+    /**
+     * @param {number} userId 
+     * @returns {CustomResponse<GoogleUserInfo>}
+     */
+    readGoogleUserInfo(userId){
+    }
+
+    /**
+     * @param {number} userId 
+     * @param {CustomUserInfo} newCustomUserInfo 
+     */
+    updateCustomUserInfo(userId, newCustomUserInfo){
+    }
+    
+    /**
+     * @param {number} userId 
+     * @param {FacebookUserInfo} newFacebookUserInfo 
+     */
+    updateFacebookUserInfo(userId, newFacebookUserInfo){
+    }
+
+    /**
+     * @param {number} userId 
+     * @param {GoogleUserInfo} newGoogleUserInfo 
+     */
+    updateGoogleUserInfo(userId, newGoogleUserInfo){
+    }
+
+    /**
+     * @param {number} userId 
+     */
+    deleteCustomUserInfo(userId){
+    }
+
+    /**
+     * @param {number} userId 
+     */
+    deleteFacebookUserInfo(userId){
+    }
+
+    /**
+     * @param {number} userId 
+     */
+    deleteGoogleUserInfo(userId){
     }
 }
