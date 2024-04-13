@@ -551,7 +551,17 @@ class userManager extends dataBaseManager{
      */
     createUser(user){
     }
-   
+
+    /**
+     * Create a new notification in the database, the id of the notification will be automatically generated 
+     * return the id of the notification created
+     * @param {number} userId 
+     * @param {Notification} notification 
+     * @returns {CustomResponse<number>}
+     */
+    createNotification(userId, notification){
+    }
+
     //////////////////////////// Updating ////////////////////////////
 
     /**
@@ -571,6 +581,16 @@ class userManager extends dataBaseManager{
      */
     addUserToOrganization(organizationId, userId){
     }
+
+    /**
+     * Mark a notification as read 
+     * @param {number} userId 
+     * @param {number} notificationId 
+     * @returns {CustomResponse<void>}
+     */
+    markNotificationAsRead(userId, notificationId){
+    }
+
 
     //////////////////////////// Deleting ////////////////////////////
 
@@ -593,6 +613,15 @@ class userManager extends dataBaseManager{
     }
 
 
+    /**
+     * Delete the notification with the given id 
+     * @param {number} userId 
+     * @param {number} notificationId 
+     * @returns {CustomResponse<void>}
+     */
+    deleteNotification(userId, notificationId){
+    }
+
     //////////////////////////// Reading ///////////////////////////
     /**
      * Return one single user
@@ -602,6 +631,13 @@ class userManager extends dataBaseManager{
     readUser(userId){
     }
 
+    /**
+     * Return a list of all the notifications that the user has 
+     * @param {number} userId 
+     * @returns {CustomResponse<Notification[]>}
+     */
+    readUserNotifications(userId){
+    }
 
     ////////////////////////// Authentication ////////////////////////
 
