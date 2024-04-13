@@ -111,6 +111,7 @@ class TaskReportSchedule{
  * @property {TaskReportSchedule[]} taskReports - The reports of the task
  * @property {bool} notificationEnable - whether to send notification to the manager when the status of the task changes or not
  * @property {number[]} childTasks - The ids of the child tasks 
+ * @property {number} recusivePermissionsValue - Now far down the task tree the permissions of the task are inherited
  */
 class Task{
     /**
@@ -127,6 +128,7 @@ class Task{
      * @param {TaskReportSchedule[]} taskReports
      * @param {bool} notificationEnable
      * @param {number[]} childTasksIds
+     * @param {number} recursivePermissionsValue
      */
     constructor(
         taskId,
@@ -141,7 +143,8 @@ class Task{
         taskManager,
         taskReports,
         notificationEnable,
-        childTasksIds
+        childTasksIds,
+        recursivePermissionsValue
     ){
         this.taskId = taskId;
         this.taskFatherId = taskFatherId;
@@ -159,7 +162,8 @@ class Task{
         this.taskManager = taskManager;
         this.taskReports = taskReports;
         this.notificationEnable = notificationEnable;
-        this.childTasksIds = childTasksIds
+        this.childTasksIds = childTasksIds;
+        this.recursivePermissionsValue = recursivePermissionsValue;
     }
 }
 
@@ -311,7 +315,7 @@ class CustomResponse {
  * @type {Object}
  * @property {MongoClient} client - The official MongoDB driver for Node.js 
  */
-class dataBaseManager{
+class DataBaseManager{
     constructor(uri){
         self.client = new MongoClient(uri);
     }
@@ -320,7 +324,7 @@ class dataBaseManager{
 
 
 
-class taskManager extends dataBaseManager{
+class TaskManager extends DataBaseManager{
 
     //////////////////////////// ieation ////////////////////////////
 
@@ -351,8 +355,8 @@ class taskManager extends dataBaseManager{
      * Create a new report schedule for the desired task
      * return the id of the report schedule
      * @param {number} organizationId
-     * @param {*} taskId 
-     * @param {*} taskReportSchedule 
+     * @param {number} taskId 
+     * @param {TaskReportSchedule} taskReportSchedule 
      * @returns {CustomResponse<number>}
      */
     createTaskReportSchedule(organizationId, taskId, taskReportSchedule){
@@ -480,7 +484,6 @@ class taskManager extends dataBaseManager{
     disableNotification(organizationId, taskId){
     }
 
-
     /**
      * Add a child task to the task with the given id
      * @param {number} organizationId
@@ -490,6 +493,15 @@ class taskManager extends dataBaseManager{
      */
     addChildTask(organizationId, taskId, childTaskId){
     }
+
+    /**
+     * Update the recursive permissions value of the task with the given id to the new value that is passed
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} newRecursivePermissionsValue
+     * @returns {CustomResponse<void>}
+    */
+    updateTaskRecursivePermissionsValue(organizationId, taskId, newRecursivePermissionsValue){}
 
     //////////////////////////// Deleting ////////////////////////////
 
@@ -528,6 +540,7 @@ class taskManager extends dataBaseManager{
      * @param {number} organizationId
      * @param {number} taskId 
      * @param {number} reportId 
+     * @returns {CustomResponse<void>}
      */
     deleteTaskReportSchedule(organizationId, taskId, reportId){
     }
@@ -542,16 +555,6 @@ class taskManager extends dataBaseManager{
      */
     readTask(organizationId, taskId){
     }
-   
-    /**
-     * return a list, containing all the task trees that a user can see inside one organization 
-     * @param {number} organizationId 
-     * @param {number} userId 
-     * @returns {CustomResponse<TaskTree[]>}
-     */
-    readTaskTreesForUser(organizationId, userId){
-    }
-
     /**
      * Remove a child task from the task with the given id
      * @param {number} organizationId
@@ -564,7 +567,7 @@ class taskManager extends dataBaseManager{
 }
 
 
-class userManager extends dataBaseManager{
+class UserManager extends DataBaseManager{
 
     //////////////////////////// Creation ////////////////////////////
 
@@ -667,27 +670,27 @@ class userManager extends dataBaseManager{
     ////////////////////////// Authentication ////////////////////////
 
     /**
-     * @param {number} userId 
-     * @param {CustomUserInfo} customUserInfo 
-     * @returns {CustomResponse<void>}
-     */
-    CreateCustomUserInfo(userId, customUserInfo){
+     * @param {number} userId
+     * @param {CustomUserInfo} customUserInfo
+     * @returns {CustomResponse<number>}
+    */
+    createCustomUserInfo(userId, customUserInfo){
     }
 
     /**
      * @param {number} userId 
      * @param {FacebookUserInfo} facebookUserInfo 
-     * @returns {CustomResponse<void>}
+     * @returns {CustomResponse<number>}
      */
-    CreateFacebookUserInfo(userId, facebookUserInfo){
+    createFacebookUserInfo(userId, facebookUserInfo){
     }
 
     /**
      * @param {number} userId 
      * @param {GoogleUserInfo} googleUserInfo 
-     * @returns {CustomResponse<void>}
+     * @returns {CustomResponse<number>}
      */
-    CreateGoogleUserInfo(userId, googleUserInfo){
+    createGoogleUserInfo(userId, googleUserInfo){
     }
 
     /**
@@ -714,6 +717,7 @@ class userManager extends dataBaseManager{
     /**
      * @param {number} userId 
      * @param {CustomUserInfo} newCustomUserInfo 
+     * @returns {CustomResponse<void>}
      */
     updateCustomUserInfo(userId, newCustomUserInfo){
     }
@@ -721,6 +725,7 @@ class userManager extends dataBaseManager{
     /**
      * @param {number} userId 
      * @param {FacebookUserInfo} newFacebookUserInfo 
+     * @returns {CustomResponse<void>}
      */
     updateFacebookUserInfo(userId, newFacebookUserInfo){
     }
@@ -728,30 +733,34 @@ class userManager extends dataBaseManager{
     /**
      * @param {number} userId 
      * @param {GoogleUserInfo} newGoogleUserInfo 
+     * @returns {CustomResponse<void>}
      */
     updateGoogleUserInfo(userId, newGoogleUserInfo){
     }
 
     /**
      * @param {number} userId 
+     * @returns {CustomResponse<void>}
      */
     deleteCustomUserInfo(userId){
     }
 
     /**
      * @param {number} userId 
+     * @returns {CustomResponse<void>}
      */
     deleteFacebookUserInfo(userId){
     }
 
     /**
      * @param {number} userId 
+     * @returns {CustomResponse<void>}
      */
     deleteGoogleUserInfo(userId){
     }
 }
 
-class organizationManager extends dataBaseManager{
+class OrganizationManager extends DataBaseManager{
 
     //////////////////////////// Creation ////////////////////////////
 
