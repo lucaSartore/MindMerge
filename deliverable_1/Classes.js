@@ -20,7 +20,7 @@ class TaskTree{
     }
 }
 
-const TASK_STATUS = {
+const TaskStatus= {
     Idea: 1,
     Planned: 2,
     InProgress: 3,
@@ -54,12 +54,12 @@ class TaskNote{
     }
 }
 
-const REPORT_TYPE = {
+const ReportType= {
     Manual: 1,
     Automatic: 2,
 }
 
-const REPORT_FREQUENCY = {
+const reportFrequency= {
     Daily: 1,
     Weekly: 2,
     Monthly: 3,
@@ -107,15 +107,16 @@ class TaskReportSchedule{
  * @property {TaskNote[]} taskNotes - The notes of the task
  * @property {number[]} taskAssignees - A list containing the ids of the assignees for the current task 
  * @property {number} taskManager - The id of the manager 
- * @property {number} taskOrganization - The id of the organization 
+ * @property {number} taskOrganizationId - The id of the organization 
  * @property {TaskReportSchedule[]} taskReports - The reports of the task
  * @property {bool} notificationEnable - whether to send notification to the manager when the status of the task changes or not
+ * @property {number[]} childTasks - The ids of the child tasks 
  */
 class Task{
     /**
      * @param {number} taskId 
      * @param {number | null} taskFatherId 
-     * @param {number} taskOrganization
+     * @param {number} taskOrganizationId
      * @param {Date} lastUpdated 
      * @param {string} taskName 
      * @param {string} taskDescription 
@@ -125,11 +126,12 @@ class Task{
      * @param {number} taskManager 
      * @param {TaskReportSchedule[]} taskReports
      * @param {bool} notificationEnable
+     * @param {number[]} childTasksIds
      */
     constructor(
         taskId,
         taskFatherId,
-        taskOrganization,
+        taskOrganizationId,
         lastUpdated,
         taskName,
         taskDescription,
@@ -138,11 +140,12 @@ class Task{
         taskAssignee,
         taskManager,
         taskReports,
-        notificationEnable
+        notificationEnable,
+        childTasksIds
     ){
         this.taskId = taskId;
         this.taskFatherId = taskFatherId;
-        this.taskOrganization = taskOrganization;
+        this.taskOrganizationId = taskOrganizationId;
         this.lastUpdated = lastUpdated;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
@@ -156,6 +159,7 @@ class Task{
         this.taskManager = taskManager;
         this.taskReports = taskReports;
         this.notificationEnable = notificationEnable;
+        this.childTasksIds = childTasksIds
     }
 }
 
@@ -216,7 +220,7 @@ class Organization{
 }
 
 
-const USER_KIND = {
+const UserKind = {
     Custom: 1,
     Google: 2,
     Facebook: 3
@@ -318,7 +322,7 @@ class dataBaseManager{
 
 class taskManager extends dataBaseManager{
 
-    //////////////////////////// Creation ////////////////////////////
+    //////////////////////////// ieation ////////////////////////////
 
     /**
      * Create a new task in the database, the id of the task will be automatically generated
@@ -476,6 +480,17 @@ class taskManager extends dataBaseManager{
     disableNotification(organizationId, taskId){
     }
 
+
+    /**
+     * Add a child task to the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} childTaskId
+     * @returns {CustomResponse<void>}
+     */
+    addChildTask(organizationId, taskId, childTaskId){
+    }
+
     //////////////////////////// Deleting ////////////////////////////
 
     /**
@@ -535,6 +550,16 @@ class taskManager extends dataBaseManager{
      * @returns {CustomResponse<TaskTree[]>}
      */
     readTaskTreesForUser(organizationId, userId){
+    }
+
+    /**
+     * Remove a child task from the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} childTaskId
+     * @returns {CustomResponse<void>}
+     */
+    removeChildTask(organizationId, taskId, childTaskId){
     }
 }
 
