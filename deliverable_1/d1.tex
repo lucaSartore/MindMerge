@@ -36,13 +36,22 @@
 \subsection{Threads}
 
 \section{Functional Requirements}
+\subsection{Authentication and account management}
 \begin{itemize}
-    \item NOTA: AGGIUNGI SIGN-IN, SIGN-OUT E DELETE ACCOUNT
-    \item The owner shall be able to pay a subscription for enabling its organisation
+    \item An user shall be able to perform a login operation
+    \item An authenticated user shall be able to perform a logout operation
+    \item An authenticated user shall be able to completely delete its account
+\end{itemize}
+\subsection{Organization management and fee Requirements}
+\begin{itemize}
+    \item The owner shall be able to pay a subscription for enabling its Organization
     \item The system shall be able to restrict edit permissions if the subscription is not paid
     \item The system must allow users to create an Organization, and therefore becoming its owner
-    \item The owner must be able to add and remove users to his Organisation
+    \item The owner must be able to add and remove users to his Organization
     \item The system must allow Organizations to assign tasks for their assignees
+\end{itemize}
+\subsection{Task structure}
+\begin{itemize}
     \item Each task should be capable of having multiple subtasks in a tree structure
     \item Each task must have exactly one manager
     \item Each task must have at least one assignee
@@ -53,12 +62,21 @@
     \item Each task should have a state attribute
     \item Each task should have a manually managed notes section
     \item Each task should have the possibility to be deleted by its managers
+\end{itemize}
+\subsection{User interface}
+\begin{itemize}
     \item Users shall be able to see all the tasks assigned/managed to them in a tree structure
     \item Each user shall be able to edit all the tasks that are assigned/managed by him
+\end{itemize}
+\subsection{Permission system}
+\begin{itemize}
     \item The system must implement a permission mechanism
     \item The permission mechanism shall be customizable by each task
     \item The permission system must implement various visibility and modification options
     \item The system must enforce task permissions to each user
+\end{itemize}
+\subsection{Report system}
+\begin{itemize}
     \item The application must provide a manual report option
     \item The manual reports must be done by users
     \item The application must provide an automatic report option
@@ -70,6 +88,9 @@
     \item When a manager schedules a report he shall be able to set a time and a frequency
     \item When a manager schedules a report he shall be able to delete it
     \item A manager shall be able to see a list containg all the reports of a specific task
+\end{itemize}
+\subsection{Notification system}
+\begin{itemize}
     \item The system must implement a Notification dashboard
     \item Each user can mark messages as read, unread, or even deleting them
     \item The notification dashboard must be available by both assignees and managers
@@ -132,7 +153,7 @@ This section illustrates the context diagram of the system and describes the rel
 External softwares that are used by MindMerge to provide services to the users.
 \begin{itemize}
     \item Google Authenticator and Facebook: they are used to give to users the possibility to log in using their Google or Facebook account. Allowing third party authentication, the system doesn't force user to create a new MindMerge account.
-    \item Payment System: it is used to allow organisation's owner to pay for the system's subscription.
+    \item Payment System: it is used to allow Organization's owner to pay for the system's subscription.
     \item OpenAI APIs: they are used, on manager request, to generate an automatic report of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
     \item Gmail: it is used as part of the notification system to notify creation of new tasks or updates to the existing ones via mail.
 \end{itemize}
