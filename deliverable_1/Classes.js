@@ -834,3 +834,17 @@ class OrganizationManager extends DataBaseManager{
     readOrganization(organizationId){
     }
 }
+
+
+///////////////////// NOTIFICATION SYSTEM ///////////////////////
+
+
+
+
+
+
+
+
+///////////////////// TASK MANAGER /////////////////////////
+
+
