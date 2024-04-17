@@ -360,7 +360,7 @@ The system is composed of 5 different components:
 \end{itemize}
 
 \subsection{Task Manager}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \begin{center}
     \includegraphics[width=5.5in,keepaspectratio]{images/component_diagram/task_manager.jpg}
 \end{center}
@@ -385,7 +385,7 @@ The interaction are divided in 3 main categories:
 
 
 \subsection{Organization Manager}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/organization_manager.jpg}
 \subsubsection{Descriptions}
 
@@ -412,7 +412,7 @@ The organization manager has 3 main tasks:
 
 
 \subsection{Front End}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
 \subsubsection{Descriptions}
 In the front end diagram we decided to create one component for every page of the application, for a total of 7 components:
@@ -581,11 +581,28 @@ The enum \texttt{PermissionKind} is necessary to represents the Read and Write p
 
 
 \subsection{Notification System}
-
 \subsubsection{Diagram}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/notificationSystem.jpg}
 
 \subsubsection{Description}
 
+The notification system is used to send notifications to users, using both internal and external managers, and to view and handle existing notifications. Every notification is associated with a specific user, a date and a flag to see if it has been read by the user. The system is composed by:
+
+\begin{itemize}
+
+\item \textbf{External Notification Manager}
+
+This class refers to the external notification system. It implements the possibility to send notifications using mails to a specific user. 
+
+\item \textbf{Internal Notification Manager}
+
+This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read or unread, to get details about one of them and to get the list of notifications associated to a specific user.
+
+\item \textbf{Notification Manager}
+
+This class refers to the generic notifications handler. The component acts as a switch, so it decides whether a notification should be sent via external or internal system.
+\end{itemize}
 
 \subsection{Task Manager} %gab
 \subsubsection{Diagram}
@@ -593,11 +610,11 @@ The enum \texttt{PermissionKind} is necessary to represents the Read and Write p
 \subsubsection{Description}
 The Task Manager module allows users to interact with the tasks. Here is a list containing each class of this module:
 \begin{itemize}
-    \item \textbf{Task Getter}
+    \item \textbf{TaskGetter}
     This class returns any task requested by the user for his specific organization. It can either respond with the entire task tree or a specific one.
-    \item \textbf{Task Creator}
+    \item \textbf{TaskCreator}
     This class allows users to create new tasks, or even add notes to already existing ones.
-    \item \textbf{Task Editor}
+    \item \textbf{TaskEditor}
     This class include various methods for task modification. Some of the functionalities included are:
     \begin{itemize}
         \item Addition and removal of assignees in a specified task
@@ -615,14 +632,66 @@ The Task Manager module allows users to interact with the tasks. Here is a list 
 
 \subsubsection{Description}
 
-The User manager system is used to provide functionalities for the user's account management. 
+The User manager system is used to provide functionalities for the user's account management.
 
+Once connected to the ServiceBaseClass discussed above, it provides the following classes:
+
+\begin{itemize}
+  \item \textbf{OauthLogInInfo: }
+  
+  A class which contains the link for the redirection and the clientId as a string.
+
+  \item \textbf{LogInResponse: }
+  
+  A class containing the ID of the user and the string based on the response.
+
+  \item \textbf{AccountManager: }
+
+  A class which contains all the methods used to manage the accounts, such as the logins management via external APIs or the change of the password.
+\end{itemize}
 \subsection{Organization Manager}
 
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/OrganizationManager.jpg}
+\subsubsection{Description}
+The Organization Manager is used to Owners with functionalities that vary from subscription management to Organization management
+\begin{itemize}
+    \item \textbf{OrganizationSubscriptionManagement}
+    This class handles the subscription side of the Organization. It contains methods for:
+    \begin{itemize}
+        \item subscription verification and payment
+        \item calculation of total subscription fee
+    \end{itemize}
+    \item \textbf{OrganizationEditor}
+    This class allows Owners to add and remove new members in the Organization
+
+\end{itemize}
 \subsection{Report Manager} % Luca non s
 
 \subsubsection{Diagram}
 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/reportManager.jpg}
+
 \subsubsection{Description}
+
+The report manager is responsible for generating reports and managing report schedule. It is composed by:
+
+\begin{itemize}
+
+\item \textbf{Automatic Report Manager}
+This class refers to the automatic report generation, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
+
+\item \textbf{Manual Report Manager}
+This class refers to the manual report generation, so report that are realised manually by users on request.
+
+\item \textbf{Report Manager}
+
+This class refers to the generic report manager, that will decide if a report should be generated automatically or manually.
+
+\item \textbf{Report Scheduler}
+
+This class referes to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
+
+\end{itemize}
 
 \end{document}
