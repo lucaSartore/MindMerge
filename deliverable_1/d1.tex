@@ -535,18 +535,18 @@ A list explaining all the classes follows:
 
 \subsubsection{Diagram}
 
-
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/database_manager.jpg}
 
 \subsubsection{Description}
 
-The Data Base Manager is used to store, retrieve and manage every info and object regarding the task, such as the user's notes files and the tasks attributes.
+The Data Base Manager is used to store, retrieve and manage every info and object regarding tasks, users and organizations, such as the user's notes files and the tasks attributes.
 This includes:
 
 \begin{itemize}
   \item \textbf{DataBaseManager: }
   
   A minimalist class containing a constructor only used to instantiate the Mongo driver, required to intercommunicate with MongoDB Atlas.
+  This class is not part of our system, and is an external dependency.
 
   \item \textbf{TaskManager: }
   
@@ -554,13 +554,13 @@ This includes:
 
   \item \textbf{UserManager: }
   
-  A class containg all the methods regarding the user management system. That includes methods to create and update user info, communicate with the external Google and Facebook APIs for authentication and so on.
+  A class containing all the methods regarding the user management system. That includes methods to create and update user info.
 
   \item \textbf{OrganizationManager: }
   
-  A class containg all the methods related to the organization itself, managing its creation, deletion and inner user management.
+  A class containing all the methods related to the organization itself, managing its creation, deletion and inner user management.
 
-\end {itemize}
+\end{itemize}
 
 
 \subsection{Services Base Module}
@@ -571,9 +571,14 @@ This includes:
 
 \subsubsection{Description}
 
-The Services Base Module is used to intercommunicate directly with the Data Base Manager and its classes as mentioned above (Task, User and Organization Manager).
+This module is primary used to define the  \texttt{ServicesBaseClass}
+The class has 3 attributes (taskManager, userManager, organizationManager) that are used to interact with the database.
+The class has 3 methods that are used to verify permissions of users or organizations.
 
-An enum is necessary to rappresents the Read and Write permision attributes. The relates the 3 classes of the Data Base Manager mentioned above and provides the methods to verify the user, the permission of the task and the permission of the organization.
+This class is meant to provide a base class for all the services of the system.
+
+The enum \texttt{PermissionKind} is necessary to represents the Read and Write permission attributes.
+
 
 \subsection{Notification System}
 
