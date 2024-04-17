@@ -469,7 +469,7 @@ all the objects of the system; A list follows:
 
     \item \textbf{TaskStatus: }
     
-    THis is an enum that represent the various status a task can have.
+    This is an enum that represent the various status a task can have.
 
     \item \textbf{Task: }
     
@@ -531,11 +531,25 @@ An enum is necessary to rappresents the Read and Write permision attributes. The
 \subsubsection{Description}
 
 \subsection{Task Manager} %gab
-
 \subsubsection{Diagram}
-
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/class_diagram/task_manager.jpg}
 \subsubsection{Description}
-
+The Task Manager module allows users to interact with the tasks. Here is a list containing each class of this module:
+\begin{itemize}
+    \item \textbf{Task Getter}
+    This class returns any task requested by the user for his specific organization. It can either respond with the entire task tree or a specific one.
+    \item \textbf{Task Creator}
+    This class allows users to create new tasks, or even add notes to already existing ones.
+    \item \textbf{Task Editor}
+    This class include various methods for task modification. Some of the functionalities included are:
+    \begin{itemize}
+        \item Addition and removal of assignees in a specified task
+        \item Update task name
+        \item Edit or delete task notes
+        \item Edit or delete specified Task
+        \item Enable or disable notification for specified task
+    \end{itemize}
+\end{itemize}
 \subsection{User Manager} %gab
 
 \subsubsection{Diagram}
