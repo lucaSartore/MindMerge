@@ -446,7 +446,12 @@ we have represented the foreign class, with the name and tre dots in the place w
 \subsubsection{Description}
 
 The data transfer objects (DTOs) are used to represent
-all the objects of the system; A list follows:
+all the objects of the system;
+
+In the classes there is a ``Date'' type used, this is an external dependency
+from the JavaScript standard library
+
+A list explaining all the classes follows:
 
 \begin{itemize}
     \item \textbf{ReportType: }
@@ -478,34 +483,73 @@ all the objects of the system; A list follows:
     A task has a double associations with users, represent by the two arrows named ``Is manager'' and ``Is assignee''.
     As the associations show, a task must have exactly one manager, and at least one assignee.
 
+    A task is composed of various primitive attributes, like title, task id ecc. 
+    And also of some complex attributes, like the a list of \texttt{TaskNotes}, a list of \texttt{TaskReportSchedule} 
+    and a \texttt{TaskStatus}. This composition is represented in the class diagram. 
 
+    \item \textbf{TaskTree: }
+    
+    A Task Tree is a recursive data structure that represent a tree of tasks starting from a root.
+    The tree has a root task, and a series of children TaskTree.
+
+    A TaskTree is associated with one task (the root task), this association, is only navigable from the TaskTree to the Task,
+    as one task may be associated with more than one TaskTree. This is because
+    the visibility of the tasks depends on the user that is looking at the tree.
+
+    \item \textbf{UserKind: }
+
+    This is an enum that represent the various kind of user that can be in the system.
+    This derives form the way a user signed in.
+
+    \item \textbf{Notification: }
+    
+    This class represent a notification issued to a particular user in a specific date.
+
+    \item \textbf{Custom/Facebook/GoogleUserInfo: }
+    
+    Each user that could have signed in with a different method may require some additionals
+    information to be stored in the database. This 3 classes allow us to extend the informations
+    of a specific user, depending on how he signed in.
+
+    \item \textbf{User: }
+    
+    This class represent a user of the system. A user can be linked to some tasks (as manager or assignee),
+    and can be linked to some organizations.
+    The link to an organization is represented by the association named ``Owns'' and ``Works for''.
+
+    A user is also associated with an unlimited number of notifications, is associated
+    with one of the user info between \texttt{CustomUserInfo}, \texttt{FacebookUserInfo} and \texttt{GoogleUserInfo},
+
+    \item \textbf{Organization: }
+    
+    Thi class represent an organization; And has a double association with users, that represent the owner and the assignees of the organization.
 \end{itemize}
 
-\subsection{Data Base Manager}
+\subsection{Data Base Manager} % Gioele
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
 
-\subsection{Services Base Module}
+\subsection{Services Base Module} % Gioele
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
 
-\subsection{Notification System}
+\subsection{Notification System} % Luca non s
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
 
-\subsection{Task Manager} %gab
+\subsection{Task Manager} % gab
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
 
-\subsection{User Manager} %gab
+\subsection{User Manager} % Gioele
 
 \subsubsection{Diagram}
 
@@ -513,7 +557,7 @@ all the objects of the system; A list follows:
 
 \subsection{Organization Manager}
 
-\subsection{Report Manager} % luca non s 
+\subsection{Report Manager} % Luca non s
 
 \subsubsection{Diagram}
 
