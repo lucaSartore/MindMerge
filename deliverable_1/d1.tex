@@ -474,7 +474,7 @@ A list explaining all the classes follows:
 
     \item \textbf{TaskStatus: }
     
-    THis is an enum that represent the various status a task can have.
+    This is an enum that represent the various status a task can have.
 
     \item \textbf{Task: }
     
@@ -529,27 +529,74 @@ A list explaining all the classes follows:
 
 \subsubsection{Diagram}
 
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/database_manager.jpg}
+
 \subsubsection{Description}
 
-\subsection{Services Base Module} % Gioele
+The Data Base Manager is used to store, retrieve and manage every info and object regarding the task, such as the user's notes files and the tasks attributes.
+This includes:
+
+\begin{itemize}
+  \item \textbf{DataBaseManager: }
+  
+  A minimalist class containing a constructor only used to instantiate the Mongo driver, required to intercommunicate with MongoDB Atlas.
+
+  \item \textbf{TaskManager: }
+  
+  A class containing all the methods required for the task system to work. As an instance, That includes methods for the creation, the attributes modification (e.g. report schedule, name) and the subtask management.
+
+  \item \textbf{UserManager: }
+  
+  A class containg all the methods regarding the user management system. That includes methods to create and update user info, communicate with the external Google and Facebook APIs for authentication and so on.
+
+  \item \textbf{OrganizationManager: }
+  
+  A class containg all the methods related to the organization itself, managing its creation, deletion and inner user management.
+
+\end {itemize}
+
+
+\subsection{Services Base Module}
+
+\subsubsection{Diagram}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/services_base_.jpg}
+
+\subsubsection{Description}
+
+The Services Base Module is used to intercommunicate directly with the Data Base Manager and its classes as mentioned above (Task, User and Organization Manager).
+
+An enum is necessary to rappresents the Read and Write permision attributes. The relates the 3 classes of the Data Base Manager mentioned above and provides the methods to verify the user, the permission of the task and the permission of the organization.
+
+\subsection{Notification System}
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
 
-\subsection{Notification System} % Luca non s
 
+\subsection{Task Manager} %gab
 \subsubsection{Diagram}
-
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/class_diagram/task_manager.jpg}
 \subsubsection{Description}
-
-\subsection{Task Manager} % gab
-
-\subsubsection{Diagram}
-
-\subsubsection{Description}
-
-\subsection{User Manager} % Gioele
+The Task Manager module allows users to interact with the tasks. Here is a list containing each class of this module:
+\begin{itemize}
+    \item \textbf{Task Getter}
+    This class returns any task requested by the user for his specific organization. It can either respond with the entire task tree or a specific one.
+    \item \textbf{Task Creator}
+    This class allows users to create new tasks, or even add notes to already existing ones.
+    \item \textbf{Task Editor}
+    This class include various methods for task modification. Some of the functionalities included are:
+    \begin{itemize}
+        \item Addition and removal of assignees in a specified task
+        \item Update task name
+        \item Edit or delete task notes
+        \item Edit or delete specified Task
+        \item Enable or disable notification for specified task
+    \end{itemize}
+\end{itemize}
+\subsection{User Manager} %gab
 
 \subsubsection{Diagram}
 
