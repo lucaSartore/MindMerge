@@ -137,30 +137,50 @@
     \item The password recovery system should not compromise security
     \item A company's data should be encrypted in the database in order to avoid data leak in case of security breaches
 \end{itemize}
+\pagebreak
 
 \section{Use Case Diagram}
-This section talks about the Use Case Diagram of the system. It describes all the various possibilities that each actor has available while using MindMerge
+Within this section, we discuss the Use Case Diagram of the system, outlining the diverse capabilities available to each actor when utilizing MindMerge.
 \subsection{Actors structure}
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/UseCaseDiagram/UseCaseUser.jpg}
 \subsection*{Description}
-Every actor is derived form a base user that possesses registration and authentication events.
-In our system the manager actor inherits everything from the assignee actor.
+In our system, a critical part is the registration and the following authentication. This concept keeps valid for every kind of user withing the platform.
+In the system, 3 type of user are made available.
+The most important one is the Organization Owner. It is responsible of deploying the entire organization and managing every user contained in it. More of that will be discussed later.
+The other roles are the Assignee and the Manager. The assigne is considered to be the last in the logistic chain, responsible for completing tasks and managing its own notes for the AI report system to work.
+Finally, the Manager actor inherits everything from the assignee, but he is granted some major capabilities, such as managing tasks, creating subtasks and all things related to them.
 \subsection{Authentication structure}
 \includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAuthentication.jpg}
 \subsection*{Description}
-Every anonymous user has the possibility to access our services in multiple ways.
-If the user hasn't got and account, first thing he can do is a sign-in, that can either be done with Facebook, Google and via email.
-After that, its respective login
+There are multiple methods for end-users to access the platform. Initially, users can utilize Google and Facebook APIs, which allow them to conveniently access the platform using their existing accounts. Additionally, a proprietary system for account creation and management will be provided.\\
+Here is the authentication structure flow:
+\begin{itemize}
+    \item  An anonymous user initiates a login request.
+    \item A subsequent sign-in request is made, utilizing the sign-in APIs mentioned above.
+    \item  Once authenticated, the user is granted access to the platform.
+\end{itemize}
+In the event that a user forgets their credentials, a password recovery system will be available. This system will send an email to the user containing a recovery link.
 \subsection{Owner structure}
 \includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseOwner.jpg}
 \subsection*{Description}
-Every actor is derived form a base user that possesses registration and authentication events.
-In our system the manager actor inherits everything from the assignee actor.
+The organization owner holds full system capabilities. It is their responsibility to add and remove users, as well as create the organization itself. They are also tasked with paying the subscription for the service, calculated based on the platform usage rate and managed through external banking APIs.\\
+More of that will be discussed in later sections.
 \subsection{Assignee and Manager structure}
 \includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAssigneeManager.jpg}
 \subsection*{Description}
-Every actor is derived form a base user that possesses registration and authentication events.
-In our system the manager actor inherits everything from the assignee actor.
+As an assignee, my primary responsibility is to add notes and edit task statuses based on the daily workload. Additionally, a manager also has the permission to create subtasks.
+
+This critical aspect involves several components:
+\begin{itemize}
+\item Definition of the status (modifiable during the lifecycle of the subtask).
+\item Nomination of the manager, as well as the assignees.
+\item Definition of recursive permission parameters (further details below).
+\item Naming and description of the task.
+\end{itemize}
+
+Managers also have the permission to delete subtasks, whether completed or not.
+
+Furthermore, managers gain the capability to request a report. This request should include details such as the inquiring task, its type (AI-managed or not), its prompt, and its frequency. The notification system will inform the targeted users via email or in-app notification.
 %VERIFICARE CONGRUENZA TRA I 2
 
 \section{Context Diagram}
@@ -406,4 +426,5 @@ In the front end diagram we decided to create one component for every page of th
     \item \textbf{Account View: } This page will allow the user to manage his account, including things like changing the password, or deleting the account.
 \end{itemize}
 \end{document}
+
 
