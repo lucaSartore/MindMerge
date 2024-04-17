@@ -139,9 +139,29 @@
 \end{itemize}
 
 \section{Use Case Diagram}
-%SISTEMA DIAGRAMMA PER EREDITARIETA' E DIVIDI DIAGRAMMA IN VARIE IMMAGINI CON DESCRIZIONI
+This section talks about the Use Case Diagram of the system. It describes all the various possibilities that each actor has available while using MindMerge
+\subsection{Actors structure}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/UseCaseDiagram/UseCaseUser.jpg}
+\subsection*{Description}
+Every actor is derived form a base user that possesses registration and authentication events.
+In our system the manager actor inherits everything from the assignee actor.
+\subsection{Authentication structure}
+\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAuthentication.jpg}
+\subsection*{Description}
+Every anonymous user has the possibility to access our services in multiple ways.
+If the user hasn't got and account, first thing he can do is a sign-in, that can either be done with Facebook, Google and via email.
+After that, its respective login
+\subsection{Owner structure}
+\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseOwner.jpg}
+\subsection*{Description}
+Every actor is derived form a base user that possesses registration and authentication events.
+In our system the manager actor inherits everything from the assignee actor.
+\subsection{Assignee and Manager structure}
+\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAssigneeManager.jpg}
+\subsection*{Description}
+Every actor is derived form a base user that possesses registration and authentication events.
+In our system the manager actor inherits everything from the assignee actor.
 %VERIFICARE CONGRUENZA TRA I 2
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/UseCaseDiagram.jpg}
 
 \section{Context Diagram}
 This section illustrates the context diagram of the system and describes the relations between MindMerge and two different kinds of external entities.
