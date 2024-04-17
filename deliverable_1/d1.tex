@@ -523,6 +523,12 @@ A list explaining all the classes follows:
     \item \textbf{Organization: }
     
     Thi class represent an organization; And has a double association with users, that represent the owner and the assignees of the organization.
+
+    \item \textbf{CustomResponse}
+
+    This is a class that will be used as a response to all our APIs.
+    It will contain a status code, a message and a payload.
+    The payload is a generic object represented with the type T
 \end{itemize}
 
 \subsection{Data Base Manager} % Gioele
@@ -570,11 +576,28 @@ The Services Base Module is used to intercommunicate directly with the Data Base
 An enum is necessary to rappresents the Read and Write permision attributes. The relates the 3 classes of the Data Base Manager mentioned above and provides the methods to verify the user, the permission of the task and the permission of the organization.
 
 \subsection{Notification System}
-
 \subsubsection{Diagram}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/notificationSystem.jpg}
 
 \subsubsection{Description}
 
+The notification system is used to send notifications to users, using both internal and external managers, and to view and handle existing notifications. Every notification is associated with a specific user, a date and a flag to see if it has been read by the user. The system is composed by:
+
+\begin{itemize}
+
+\item \textbf{External Notification Manager}
+
+This class refers to the external notification system. It implements the possibility to send notifications using mails to a specific user. 
+
+\item \textbf{Internal Notification Manager}
+
+This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read or unread, to get details about one of them and to get the list of notifications associated to a specific user.
+
+\item \textbf{Notification Manager}
+
+This class refers to the generic notifications handler. The component acts as a switch, so it decides whether a notification should be sent via external or internal system.
+\end{itemize}
 
 \subsection{Task Manager} %gab
 \subsubsection{Diagram}
@@ -604,7 +627,22 @@ The Task Manager module allows users to interact with the tasks. Here is a list 
 
 \subsubsection{Description}
 
-The User manager system is used to provide functionalities for the user's account management. 
+The User manager system is used to provide functionalities for the user's account management.
+
+Once connected to the ServiceBaseClass discussed above, it provides the following classes:
+
+\beging{itemize}
+  \item \textbf{OauthLogInInfo: }
+  
+  A class which contains the link for the redirection and the clientId as a string.
+
+  \item \textbf{LogInResponse: }
+  
+  A class containing the ID of the user and the string based on the response.
+
+  \item \textbf{AccountManager: }
+
+  A class which contains all the methods used to manage the accounts, such as the logins management via external APIs or the change of the password.
 
 \subsection{Organization Manager}
 
@@ -627,6 +665,28 @@ The Organization Manager is used to Owners with functionalities that vary from s
 
 \subsubsection{Diagram}
 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/reportManager.jpg}
+
 \subsubsection{Description}
+
+The report manager is responsible for generating reports and managing report schedule. It is composed by:
+
+\begin{itemize}
+
+\item \textbf{Automatic Report Manager}
+This class refers to the automatic report generation, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
+
+\item \textbf{Manual Report Manager}
+This class refers to the manual report generation, so report that are realised manually by users on request.
+
+\item \textbf{Report Manager}
+
+This class refers to the generic report manager, that will decide if a report should be generated automatically or manually.
+
+\item \textbf{Report Scheduler}
+
+This class referes to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
+
+\end{itemize}
 
 \end{document}
