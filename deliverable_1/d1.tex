@@ -604,7 +604,22 @@ The Task Manager module allows users to interact with the tasks. Here is a list 
 
 \subsubsection{Description}
 
-The User manager system is used to provide functionalities for the user's account management. 
+The User manager system is used to provide functionalities for the user's account management.
+
+Once connected to the ServiceBaseClass discussed above, it provides the following classes:
+
+\beging{itemize}
+  \item \textbf{OauthLogInInfo: }
+  
+  A class which contains the link for the redirection and the clientId as a string.
+
+  \item \textbf{LogInResponse: }
+  
+  A class containing the ID of the user and the string based on the response.
+
+  \item \textbf{AccountManager: }
+
+  A class which contains all the methods used to manage the accounts, such as the logins management via external APIs or the change of the password.
 
 \subsection{Organization Manager}
 
