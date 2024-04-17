@@ -545,6 +545,16 @@ class TaskManager extends DataBaseManager{
     deleteTaskReportSchedule(organizationId, taskId, reportId){
     }
 
+    /**
+     * Remove a child task from the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} childTaskId
+     * @returns {CustomResponse<void>}
+     */
+    removeChildTask(organizationId, taskId, childTaskId){
+    }
+
     //////////////////////////// Reading ///////////////////////////
     
     /**
@@ -555,15 +565,7 @@ class TaskManager extends DataBaseManager{
      */
     readTask(organizationId, taskId){
     }
-    /**
-     * Remove a child task from the task with the given id
-     * @param {number} organizationId
-     * @param {number} taskId
-     * @param {number} childTaskId
-     * @returns {CustomResponse<void>}
-     */
-    removeChildTask(organizationId, taskId, childTaskId){
-    }
+
 }
 
 
@@ -835,16 +837,630 @@ class OrganizationManager extends DataBaseManager{
     }
 }
 
+///////////////////// Base Class Services /////////////////////////
+
+const PermissionKind = {
+    Read: 1,
+    Write: 2
+}
+
+/**
+ * @typedef ServicesBaseClass
+ * @type {Object}
+ * @property {TaskManager} taskManager - The task manager class to edit the database
+ * @property {OrganizationManager} organizationManager - The organization manager class to edit the database
+ * @property {UserManager} userManager - The user manager class to edit the database
+ * 
+ */
+class ServicesBaseClass{
+    constructor() {
+        this.taskManager = new TaskManager(); 
+        this.organizationManager = new OrganizationManager();
+        this.userManager = new UserManager();
+    }
+
+    /**
+     * verify that a user has a permission to do a particular action on a task 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} userId 
+     * @param {string} userToken
+     * @param {number} permission 
+     * @returns {CustomResponse<bool>}
+     */
+    verifyTaskPermission(organizationId, taskId, userId, userToken, permission){
+    }
+
+    /**
+     * verify that a user is really hwo they say they are, by comparing the token given to the token in the database
+     * @param {number} userId 
+     * @param {string} userToken
+     * @returns {CustomResponse<bool>}
+     */
+    verifyAccount(userId, userToken){
+    }
+
+
+    /**
+     * verify that a user has a permission to do a particular action on an organization 
+     * @param {number} organizationId 
+     * @param {number} userId 
+     * @param {number} userToken 
+     * @param {number} permission 
+     */
+    verifyOrganizationPermission(organizationId, userId, userToken, permission){
+    }
+
+}
+
 
 ///////////////////// NOTIFICATION SYSTEM ///////////////////////
 
+class ExternalNotificationManager extends ServicesBaseClass{
+    
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {string} notificationText 
+     * @param {Date} date 
+     * @param {boolean} read
+     * @returns {CustomResponse<void>}
+     */
+    sendNotification(notificationId, userId, notificationText, date, read){
+    }
+}
 
+class InternalNotificationManager extends ServicesBaseClass{
 
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CustomResponse<void>}
+     */
+    deleteNotification(notificationId, userId, userToken){
+    }
 
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CustomResponse<void>}
+     */
+    markNotificationAsRead(notificationId, userId, userToken){
+    }
 
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CistomRespomse<Notification>}
+     */
+    getNotificationDetails(notificationId, userId, userToken){
+    }
 
+    /** 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CustomResponse<Notification[]>}
+     */
+    getNotificationList(userId, userToken){
+    }
+}
+
+class NotificationManager extends ServicesBaseClass{
+
+    constructor(){
+        super();
+        this.externalNotificationManager = new ExternalNotificationManager();
+        this.internalNotificationManager = new InternalNotificationManager();
+    }
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {string} notificationText 
+     * @param {Date} date 
+     * @param {boolean} read 
+     * @returns {CustomResponse<void>}
+     */
+    sendNotification(notificationId, userId, notificationText, date, read){
+    }
+}
 
 
 ///////////////////// TASK MANAGER /////////////////////////
 
 
+class TaskGetter extends ServicesBaseClass{
+    
+    /**
+     * returns the task trees a user can see inside an organization 
+     * @param {number} organizationId 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<TaskTree[]>}
+     */
+    getTasksForUser(organizationId, userId, userToken){
+    }
+
+    /**
+     * returns the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} userId
+     * @param {string} userToken
+     * @returns {CustomResponse<Task>}
+     */
+    getTask(organizationId, taskId, userId, userToken){
+    }
+}
+
+class TaskCreator extends ServicesBaseClass{
+
+
+    /*    
+     * Create a new task in the database, the id of the task will be automatically generated
+     * return the id of the task created
+     * @param {number} organizationId
+     * @param {Task} task
+     * @param {number} userId
+     * @param {string} userToken
+     */
+    createTask(organizationId, task, userId, userToken){
+    }
+    
+    /**
+     * Create new note to the task.
+     * The note's date will be automatically set to the current time in the server
+     * The note's id will be automatically generated
+     * Return the id of the note created
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {string} notes 
+     * @param {number} userId
+     * @param {string} userToken
+     * @returns {CustomResponse<number>}
+     */
+    createTaskNotes(organizationId, taskId, notes, userId, userToken){
+    }
+
+}
+
+class TaskEditor extends ServicesBaseClass{
+
+    /**
+     * Delete the task with the specify ID, and all the sub tasks.
+     * @param {number} organizationId 
+     * @param {number} taskId 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @return {CustomResponse<void>}
+     */
+    deleteTask(organizationId, taskId, userId, userToken){
+    }
+
+
+    /**
+     * Delete the assignee with the given id from the task with the given id
+     * Can return an error if you are trying to delete the last assignee of the task
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} assigneeId
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    deleteTaskAssignee(organizationId, taskId, assigneeId, userId, userToken){
+    } 
+
+    
+    /**
+     * Delete the note with the given id from the task with the given id
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} noteId
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    deleteTaskNotes(organizationId, taskId, noteId, userId, userToken, userId, userToken){
+    }
+
+    /**
+     * Update the task with the given id with the new task that is passed
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {Task} newTask 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {Response}
+     */
+    updateTask(organizationId, taskId, newTask, userId, userToken){
+    }
+
+    /**
+     * Update the name of the task with the given id to the new name that is passed
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {string} newName
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskName(organizationId, taskId, newName, userId, userToken){
+    }
+
+    /**
+     * Update the description of the task with the given id to the new description that is passed
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {string} newDescription
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskDescription(organizationId, taskId, newDescription, userId, userToken){
+    }
+
+    /**
+     * Update the status of the task with the given id to the new status that is passed 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} newStatus 
+     * @param {number} userId 
+     * @param {string} userToken 
+     */
+    updateTaskStatus(organizationId, taskId, newStatus, userId, userToken){
+    }
+
+    /**
+     * Update the notes of a task.
+     * The note's date will be automatically set to the current time in the server 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} noteId 
+     * @param {string} newNotes 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskNotes(organizationId, taskId, noteId, newNotes, userId, userToken){
+    }
+
+    /**
+     * Update the assignees of the task with the given id to the new assignees that are passed 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number[]} assignees 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskAssignees(organizationId, taskId, assignees, userId, userToken){
+    }
+
+    /**
+     * Add a new assignee to the task, if it doesn't exist already
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} assignee 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    addNewAssignee(organizationId, taskId, assignee, userId, userToken){
+    }
+
+    /**
+     * Update the manager of the task with the given id to the new manager that is passed
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} newManager
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    updateTaskManager(organizationId, taskId, newManager, userId, userToken){
+    }
+
+    /**
+     * Enable the notifications for the task with the given id 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    enableNotification(organizationId, taskId, userId, userToken){
+    }
+    
+    /**
+     * Disable the notifications for the task with the given id 
+     * @param {number} organizationId
+     * @param {number} taskId 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    disableNotification(organizationId, taskId, userId, userToken){
+    }
+
+    /**
+     * Update the recursive permissions value of the task with the given id to the new value that is passed
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} newRecursivePermissionsValue
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+    */
+    updateTaskRecursivePermissionsValue(organizationId, taskId, newRecursivePermissionsValue, userId, userToken){}
+}
+
+
+//////////////////////// User Manager /////////////////////////
+
+/**
+ * @typedef OauthLogInInfo
+ * @type {Object}
+ * @property {string} redirectUrl - The url to redirect the user to after the login
+ * @property {string} clientId - The id of the client
+ */
+class OauthLogInInfo{
+    constructor(){
+    }
+}
+
+/**
+ * @typedef LogInResponse
+ * @type {Object}
+ * @property {number} userId - The id of the user
+ * @property {string} userToken - The token of the user, will be used to authorize the successive requests.
+ */
+class LogInResponse{
+    constructor(userId, userToken){
+        this.userId = userId;
+        this.userToken = userToken;
+    }
+}
+
+
+class AccountManager extends ServicesBaseClass{
+
+    /**
+     * find a user id starting from a name
+     * @param {string} name 
+     * @returns {CustomResponse<number>}
+     */
+    findUserByName(name){
+    }
+
+    /**
+     * @returns {CustomResponse<OauthLogInInfo>}
+     */
+    getGoogleOauthLogInInfo(){
+    }
+
+    /**
+     * @returns {CustomResponse<OauthLogInInfo>}
+     */
+    getFacebookOauthLogInInfo(){
+    }
+
+    /**
+     * @param {?string} userName 
+     * @param {?string} userPassword 
+     * @returns {CustomResponse<LogInResponse>}
+     */
+    customLogIn(userName, userPassword){
+    }
+    
+    /**
+     * @param {string} oauthCode 
+     * @returns {CustomResponse<LogInResponse>}
+     */
+    googleLogIn(oauthCode){
+    }
+    
+    /**
+     * @param {string} oauthCode 
+     * @returns {CustomResponse<LogInResponse>}
+     */
+    facebookLogIn(oauthCode){
+    }
+
+    /**
+     * return true if the user was created successfully, false if the user already exists
+     * @param {?string} userName 
+     * @param {?string} userPassword 
+     * @returns {CustomResponse<LogInResponse>}
+     */
+    customSignIn(userName, userPassword){
+    }
+    
+    /**
+     * return true if the user was created successfully, false if the user already exists
+     * @param {string} oauthCode 
+     * @returns {CustomResponse<bool>}
+     */
+    googleSignIn(oauthCode){
+    }
+    
+    /**
+     * return true if the user was created successfully, false if the user already exists
+     * @param {string} oauthCode 
+     * @returns {CustomResponse<bool>}
+     */
+    facebookSignIn(oauthCode){
+    }
+    /**
+     * register a user with a custom account
+     * return true if the user was created successfully, false if the user already exists
+     * @param {?string} userName 
+     * @param {?string} userPassword 
+     * @param {?string} oauthToken 
+     * @returns {CustomResponse<bool>}
+     */
+    signIn(userName, userPassword, oauthToken){
+    }
+
+    /**
+     * @param {newUserName} userId 
+     * @param {string} userToken 
+     * @param {string} newUserName 
+     * @returns {CustomResponse<void>}
+     */
+    editUserName(userId, userToken, newUserName){
+    }
+ 
+    /**
+     * @param {newUserName} userId 
+     * @param {string} userToken 
+     * @param {string} newPassword 
+     * @returns {CustomResponse<void>}
+     */
+    changePassword(userId, userToken, newPassword){
+    }
+
+    /**
+     * @param {number} userId
+     * @param {string} userToken
+     * @returns {CustomResponse<void>} 
+     */
+    deleteAccount(userId, userToken){
+    }
+}
+
+
+////////////////// Organization Manager //////////////////////
+
+class OrganizationSubscriptionManager extends ServicesBaseClass{
+
+    /**
+     * @param {number} organizationId
+     * @returns {CustomResponse<number>}
+     */
+    calculateSubscriptionPrice(organizationId){
+    }
+
+    /**
+     * 
+     * @param {number} organizationId 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @param {string} paymentInfo 
+     */
+    paySubscription(organizationId, userId, userToken, paymentInfo){
+    }
+
+    /**
+     * returns true if the organization has a valid subscription
+     * @param {number} organizationId
+     * @returns {CustomResponse<bool>}
+     */
+    verifySubscription(organizationId){
+    }
+}
+
+class OrganizationEditor extends ServicesBaseClass{
+    
+    /** 
+     * @param {number} organizationId 
+     * @param {number} userToAddId 
+     * @param {number} userId 
+     * @param {number} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    addUserToOrganization(organizationId, userToDeleteId, userId, userToken){
+    }
+    
+    /** 
+     * @param {number} organizationId 
+     * @param {number} userToDeleteId 
+     * @param {number} userId 
+     * @param {number} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    removeUserFromOrganization(organizationId, userToAddId, userId, userToken){
+    }
+
+}
+
+
+////////////////////////// REPORTS ////////////////////////////
+
+class AutomaticReportManager extends ServicesBaseClass{
+    generateAutomaticReports(organizationId, taskId, reportPrompt){
+    }
+}
+
+
+class ManualReportManager extends ServicesBaseClass{
+    generateAutomaticReports(organizationId, taskId, reportPrompt){
+    }
+}
+
+class ReportManager extends ServicesBaseClass{
+
+    constructor(){
+        super();
+        this.automaticReportManager = new AutomaticReportManager();
+        this.manualReportManager = new ManualReportManager();
+    }
+
+    generateReport(organizationId, taskId, reportPrompt, reportKind, userId, userToken){
+    }
+} 
+
+
+class reportScheduler extends ServicesBaseClass{
+    /**
+     * 
+     * @param {number} organizationId 
+     * @param {number} taskId 
+     * @param {string} reportPrompt 
+     * @param {number} reportKind 
+     * @param {number} reportFrequency 
+     * @param {number} userId 
+     * @param {string} userToken 
+     * @returns {CustomResponse<void>}
+     */
+    scheduleReport(organizationId, taskId, reportPrompt, reportKind, reportFrequency, userId, userToken){
+    }
+
+    /**
+     * return a list of all the report schedules for a task
+     * @param {number} organizationId 
+     * @param {number} taskId 
+     * @param {number} userId 
+     * @param {number} userToken 
+     * @returns {CustomResponse<TaskReportSchedule[]>}
+     */
+    getReportSchedules(organizationId, taskId, userId, userToken){
+    }
+
+    /**
+     * delete a report schedule
+     * @param {number} organizationId
+     * @param {number} taskId
+     * @param {number} reportId
+     * @param {number} userId
+     * @param {string} userToken
+     * @returns {CustomResponse<void>}
+     */
+    deleteReportSchedule(organizationId, taskId, reportId, userId, userToken){
+    }
+
+    /**
+     * Execute all the pending report for one organization
+     * @param {number} organizationId 
+     */
+    executeScheduledReport(organizationId){
+    }
+}
