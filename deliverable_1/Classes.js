@@ -893,12 +893,77 @@ class ServicesBaseClass{
 
 }
 
+
 ///////////////////// NOTIFICATION SYSTEM ///////////////////////
 
+class ExternalNotificationManager extends ServicesBaseClass{
+    sendNotification(){
+    }
+}
+
+class InternalNotificationManager extends ServicesBaseClass{
 
 
+    sendNotification(){
+    }
 
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @returns {CustomResponse<void>}
+     */
+    deleteNotification(notificationId, userId){
+    }
 
+    /**
+     * 
+     * @param {*} notificationId 
+     * @param {*} userId 
+     * @returns {CustomResponse<void>}
+     */
+    markNotificationAsRead(notificationId, userId){
+    }
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {string} notificationText 
+     * @param {Date} date 
+     * @param {boolean} read
+     * @returns {CustomResponse<Notification>}
+     */
+    getNotificationDetails(notificationId, userId){
+    }
+
+    /** 
+     * @param {number} userId 
+     * @returns {CustomResponse<Notification[]>}
+     */
+    getNotificationList(userId){
+    }
+}
+
+class NotificationManager extends ServicesBaseClass{
+
+    constructor(){
+        super();
+        this.externalNotificationManager = new ExternalNotificationManager();
+        this.internalNotificationManager = new InternalNotificationManager();
+    }
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {string} notificationText 
+     * @param {Date} date 
+     * @param {boolean} read 
+     */
+    sendNotification(notificationId, userId, notificationText, date, read){
+    }
+}
 
 
 
