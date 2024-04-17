@@ -485,13 +485,44 @@ all the objects of the system; A list follows:
 
 \subsubsection{Diagram}
 
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/database_manager.jpg}
+
 \subsubsection{Description}
+
+The Data Base Manager is used to store, retrieve and manage every info and object regarding the task, such as the user's notes files and the tasks attributes.
+This includes:
+
+\begin{itemsize}
+  \item \textbf{DataBaseManager: }
+  
+  A minimalist class containing a constructor only used to instantiate the Mongo driver, required to intercommunicate with MongoDB Atlas.
+
+  \item \textbf{TaskManager: }
+  
+  A class containing all the methods required for the task system to work. As an instance, That includes methods for the creation, the attributes modification (e.g. report schedule, name) and the subtask management.
+
+  \item \textbf{UserManager: }
+  
+  A class containg all the methods regarding the user management system. That includes methods to create and update user info, communicate with the external Google and Facebook APIs for authentication and so on.
+
+  \item \textbf{OrganizationManager: }
+  
+  A class containg all the methods related to the organization itself, managing its creation, deletion and inner user management.
+
+
 
 \subsection{Services Base Module}
 
 \subsubsection{Diagram}
 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/services_base_.jpg}
+
 \subsubsection{Description}
+
+The Services Base Module is used to intercommunicate directly with the Data Base Manager and its classes as mentioned above (Task, User and Organization Manager).
+
+An enum is necessary to rappresents the Read and Write permision attributes. The relates the 3 classes of the Data Base Manager mentioned above and provides the methods to verify the user, the permission of the task and the permission of the organization.
 
 \subsection{Notification System}
 
