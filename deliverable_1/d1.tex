@@ -405,7 +405,6 @@ In the front end diagram we decided to create one component for every page of th
     \item \textbf{Organization View: } This page will allow the organization owner to manage the organization, including things like adding/removing users, or paying the subscription.
     \item \textbf{Account View: } This page will allow the user to manage his account, including things like changing the password, or deleting the account.
 \end{itemize}
-\end{document}
 
 \section{Class Diagram}
 
@@ -421,7 +420,45 @@ we have represented the foreign class, with the name and tre dots in the place w
 
 \subsubsection{Diagram}
 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/data_transfert_objects.jpg}
+
 \subsubsection{Description}
+
+The data transfer objects (DTOs) are used to represent
+all the objects of the system; A list follows:
+
+\begin{itemize}
+    \item \textbf{ReportType: }
+
+    This is an enum that represent the two type of reports that our system can handel: Manual and Automatic.
+
+    \item \textbf{ReportFrequency: }
+
+    This is an enum that represent the various frequency a periodic report can have.
+
+    \item \textbf{TaskReportSchedule: }
+
+    This is a class that represent one report scheduled for a specific day, and with a specific frequency.
+    This will be used by the report system to memorize and execute all the scheduled reports.
+
+    \item \textbf{TaskNote: }
+    
+    This class represent a note that a user add to a specific task.
+    A task can have more that one note, and this is represented in the class diagram.
+
+    \item \textbf{TaskStatus: }
+    
+    THis is an enum that represent the various status a task can have.
+
+    \item \textbf{Task: }
+    
+    This is the class that represent a Task.
+
+    A task has a double associations with users, represent by the two arrows named ``Is manager'' and ``Is assignee''.
+    As the associations show, a task must have exactly one manager, and at least one assignee.
+
+
+\end{itemize}
 
 \subsection{Data Base Manager}
 
@@ -455,8 +492,10 @@ we have represented the foreign class, with the name and tre dots in the place w
 
 \subsection{Organization Manager}
 
-\subsection{Report Manager}
+\subsection{Report Manager} % luca non s 
 
 \subsubsection{Diagram}
 
 \subsubsection{Description}
+
+\end{document}
