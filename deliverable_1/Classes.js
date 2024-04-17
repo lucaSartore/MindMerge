@@ -897,34 +897,7 @@ class ServicesBaseClass{
 ///////////////////// NOTIFICATION SYSTEM ///////////////////////
 
 class ExternalNotificationManager extends ServicesBaseClass{
-    sendNotification(){
-    }
-}
-
-class InternalNotificationManager extends ServicesBaseClass{
-
-
-    sendNotification(){
-    }
-
-    /**
-     * 
-     * @param {number} notificationId 
-     * @param {number} userId 
-     * @returns {CustomResponse<void>}
-     */
-    deleteNotification(notificationId, userId){
-    }
-
-    /**
-     * 
-     * @param {*} notificationId 
-     * @param {*} userId 
-     * @returns {CustomResponse<void>}
-     */
-    markNotificationAsRead(notificationId, userId){
-    }
-
+    
     /**
      * 
      * @param {number} notificationId 
@@ -932,16 +905,50 @@ class InternalNotificationManager extends ServicesBaseClass{
      * @param {string} notificationText 
      * @param {Date} date 
      * @param {boolean} read
-     * @returns {CustomResponse<Notification>}
+     * @returns {CustomResponse<void>}
      */
-    getNotificationDetails(notificationId, userId){
+    sendNotification(notificationId, userId, notificationText, date, read){
+    }
+}
+
+class InternalNotificationManager extends ServicesBaseClass{
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CustomResponse<void>}
+     */
+    deleteNotification(notificationId, userId, userToken){
+    }
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CustomResponse<void>}
+     */
+    markNotificationAsRead(notificationId, userId, userToken){
+    }
+
+    /**
+     * 
+     * @param {number} notificationId 
+     * @param {number} userId 
+     * @param {number} userToken
+     * @returns {CistomRespomse<Notification>}
+     */
+    getNotificationDetails(notificationId, userId, userToken){
     }
 
     /** 
      * @param {number} userId 
+     * @param {number} userToken
      * @returns {CustomResponse<Notification[]>}
      */
-    getNotificationList(userId){
+    getNotificationList(userId, userToken){
     }
 }
 
@@ -960,11 +967,11 @@ class NotificationManager extends ServicesBaseClass{
      * @param {string} notificationText 
      * @param {Date} date 
      * @param {boolean} read 
+     * @returns {CustomResponse<void>}
      */
     sendNotification(notificationId, userId, notificationText, date, read){
     }
 }
-
 
 
 ///////////////////// TASK MANAGER /////////////////////////
