@@ -360,7 +360,7 @@ The system is composed of 5 different components:
 \end{itemize}
 
 \subsection{Task Manager}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \begin{center}
     \includegraphics[width=5.5in,keepaspectratio]{images/component_diagram/task_manager.jpg}
 \end{center}
@@ -385,7 +385,7 @@ The interaction are divided in 3 main categories:
 
 
 \subsection{Organization Manager}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/organization_manager.jpg}
 \subsubsection{Descriptions}
 
@@ -412,7 +412,7 @@ The organization manager has 3 main tasks:
 
 
 \subsection{Front End}
-\subsubsection{Diatgram}
+\subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
 \subsubsection{Descriptions}
 In the front end diagram we decided to create one component for every page of the application, for a total of 7 components:
@@ -582,11 +582,11 @@ An enum is necessary to rappresents the Read and Write permision attributes. The
 \subsubsection{Description}
 The Task Manager module allows users to interact with the tasks. Here is a list containing each class of this module:
 \begin{itemize}
-    \item \textbf{Task Getter}
+    \item \textbf{TaskGetter}
     This class returns any task requested by the user for his specific organization. It can either respond with the entire task tree or a specific one.
-    \item \textbf{Task Creator}
+    \item \textbf{TaskCreator}
     This class allows users to create new tasks, or even add notes to already existing ones.
-    \item \textbf{Task Editor}
+    \item \textbf{TaskEditor}
     This class include various methods for task modification. Some of the functionalities included are:
     \begin{itemize}
         \item Addition and removal of assignees in a specified task
@@ -608,6 +608,21 @@ The User manager system is used to provide functionalities for the user's accoun
 
 \subsection{Organization Manager}
 
+\subsubsection{Diagram}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/OrganizationManager.jpg}
+\subsubsection{Description}
+The Organization Manager is used to Owners with functionalities that vary from subscription management to Organization management
+\begin{itemize}
+    \item \textbf{OrganizationSubscriptionManagement}
+    This class handles the subscription side of the Organization. It contains methods for:
+    \begin{itemize}
+        \item subscription verification and payment
+        \item calculation of total subscription fee
+    \end{itemize}
+    \item \textbf{OrganizationEditor}
+    This class allows Owners to add and remove new members in the Organization
+
+\end{itemize}
 \subsection{Report Manager} % Luca non s
 
 \subsubsection{Diagram}
