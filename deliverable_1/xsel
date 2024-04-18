@@ -1,0 +1,775 @@
+     1	% !TeX root = d1.tex
+
+     2	\documentclass{article}
+
+     3	\usepackage{xcolor}
+     4	\usepackage[margin=0.5in]{geometry} 
+     5	\usepackage{graphicx}
+     6	\title{MindMerge --- Deliverable e 1}
+     7	\author{Gabriele Benetti, Gioele Bernardini, Luca Fossa Crescini, Luca Sartore}
+
+     8	\begin{document}
+     9	\maketitle
+
+
+    10	\tableofcontents
+
+
+    11	\newpage
+    12	\newgeometry{margin=1.5in}
+    13	\section*{Abstract}   % titolo temporaneo da modificare
+    14	In today's rapidly evolving business landscape, the importance of advanced technological tools becomes increasingly evident. 
+    15	The current market is characterized by swift and unpredictable changes, fueled by a myriad of factors such as technological advancement and the complex global geopolitical landscape. 
+    16	In this already intricate scenario, economic fluctuations and the growing expectations of consumers 
+    17	demand significant efforts from companies to remain competitive 
+    18	and meet the evolving needs of the market. All things considered, many uncertainties arise:
+
+    19	% NON E' UNA LISTA! -> mettere una lista sarebbe un errore (e' un flusso di domande, NON un elenco comprensivo!)
+    20	% sebbene quindi sbagliato penso pero' sia graficamente piu' piacevole, faro' la lista comunque
+    21	\begin{itemize}
+    22	    \item How will the market change as these models become more efficient and effective?
+    23	    \item What must companies do to remain competitive in the evolving market?
+    24	    \item What opportunities exist today for companies to harness these technologies?
+    25	\end{itemize}
+    26	These were the uncertainties and presumptions of the present-day world.\\
+    27	% vvvvv riga vuota per enfatizzare l'ultima frase
+    28	\\
+    29	What follows is our response.
+    30	\\
+    31	\\
+    32	\\
+    33	\\
+    34	\\
+
+    35	\section*{MindMerge}
+    36	A web application focused on optimizing workflow. 
+    37	The app allows users to create work schedules and tasks to assist businesses in dividing workloads. 
+    38	The flagship feature is the system - integrated with modern language models - that provides fully automated reports on personnel productivity, based on notes and comments provided by employees themselves in an easy and flexible manner.
+    39	\pagebreak
+    40	\restoregeometry
+
+    41	We believe that the best way to showcase our project is through the experiences of the end users it's aimed at. Various actors are involved in the software:
+    42	\begin{itemize}
+    43	  \item Google Authenticator: the system dedicated to user access through Google credentials.
+    44	  \item OpenAI/Google server: the agent responsible for the operation of our flagship feature, namely the automatic creation of reports.
+    45	  \item MongoDB: the DBMS tasked with storing employee notes, tasks, subtasks, etc.
+    46	\end{itemize}
+    47	Of course, the end users cannot do without these agents. The end users can be divided into three separate subroles, interconnected through a hierarchical relationship regarding system read/write permissions, as we'll explore later on:
+    48	\begin{itemize}
+    49	  \item Employer
+    50	  \item Manager
+    51	  \item Executor
+    52	\end{itemize}
+
+    53	Based on that, users might be looking for different goals on our platform:
+    54	\begin{itemize}
+    55	    \item As an \textbf{employee}, I want improved communication and collaboration tools to enhance work efficiency.
+    56	    \item As a \textbf{team member}, I want tasks to be scheduled immediately based on objectives, with immediate acknowledgment from other teams, to reduce time spent in meetings.
+    57	    \item As a \textbf{team member}, I want a system to track tasks and deadlines, to ensure adherence to project timelines.
+    58	    \item As a \textbf{project manager}, I want a mechanism to manage internal project priorities effectively.
+    59	    \item As a \textbf{project manager}, I want the system to be scalable and adaptable to large projects with hundreds of collaborators.
+    60	    \item As a \textbf{project manager}, I want tools to help manage the workload of team members, to eliminate bottlenecks.
+    61	    \item As a \textbf{manager}, I want to receive detailed reports on the work completed, to enhance management effectiveness.
+    62	    \item As a \textbf{manager}, I want tools to evaluate employee efficiency effectively.
+    63	\end{itemize}
+
+
+    64	\section{Domain, Objectives}
+    65	Regarding the application domain, we have chosen Business Productivity for our project. 
+    66	Our decision was influenced by several factors. Certainly, the growing trend of public interest in AI has been a determining factor. The related market opportunities are promising, and B2B has historically always been promising. 
+    67	While our limited and relatively inexperienced team has certainly prevented us from implementing advanced features for our software, it has not impacted the choice of the system to develop.
+    68	\begin{enumerate}
+    69	\item \textbf{Enhanced Workflow Management}: Improve workflow management through detailed reports, easily obtainable through AI implemented within the software.
+    70	\item \textbf{Workload Optimization}: Optimize team members' workload by providing a real-time overview of current tasks and deadlines.
+    71	\item \textbf{Deadline Compliance Support}: Support adherence to deadlines through constant and real-time monitoring of tasks.
+    72	\item \textbf{Project Priority Management}: Effectively manage internal project priorities through a clear hierarchy of tasks to be completed.
+    73	\item \textbf{Communication Enhancement}: Improve communication and collaboration among employees by providing easy access to information for managers and colleagues.
+    74	\item \textbf{Scalability and Adaptability}: Ensure software scalability for projects of any size through a hierarchical structure of tasks and subtasks.
+    75	\item \textbf{Immediate Task Scheduling}: Schedule tasks immediately to reduce time spent in meetings, in an intuitive and practical manner.
+    76	\item \textbf{Employee Efficiency Evaluation}: Evaluate employee efficiency to optimize human resource utilization, eliminating the need for paper reports and individual interviews.
+    77	\end{enumerate}
+
+    78	\section{SWAT Analysis}
+    79	\subsection{Quick recap}
+    80	The development of software must incorporate a comprehensive evaluation of the economic environment in which it will operate.
+    81	Within this framework, the SWOT analysis emerges as a vital instrument for gaining a profound understanding of the surrounding landscape, enabling the formulation of a cohesive strategy to tackle challenges and leverage opportunities.
+
+    82	\begin{figure}[h]
+    83	  \centering
+    84	  \includegraphics[width=0.95\textwidth]{images/swat_cropped.png}
+    85	  \caption{\small SWOT Analysis Diagram: visual representation of the Strengths, Weaknesses, Opportunities, and Threats associated with our software project}
+    86	\end{figure}
+
+    87	Here's a brief summary of the points outlined.
+    88	\begin{enumerate}
+    89	    \item \textbf{Strenghts}:\\
+    90	Predictions indicate that the LLM market is expected to grow by around \textbf{36\%} by 2030\footnote{source: grandviewresearch.com}. Having reliable and established APIs is a big plus as they offer more flexibility and are easy to incorporate. The ongoing shift towards digitalization in the job market provides opportunities for innovation and improving how companies manage their human resources.
+    91	    \item \textbf{Weaknesses}:
+    92	Moving on to weaknesses, our project has a few. Firstly, our team is small both in terms of finances and people. Depending too heavily on external APIs, even if they're reliable, is risky because our system relies heavily on them. Marketing our product and breaking into the market, which is competitive and growing, could be challenging. Resistance to change from employees at client companies is another hurdle. Lastly, ensuring the reliability of our reports and avoiding mistakes is crucial; if reports are inaccurate, it affects the usefulness and saleability of our product.
+    93	    \item \textbf{Opportuinities}:
+    94	The business-to-business (\textit{B2B}) market has always been profitable, mainly because buyers are often other businesses rather than individual consumers. It's estimated to grow by \textbf{19\%} by 2031\footnote{source: straitsresearch.com}. LLMs are becoming more recognized in the public eye, which can work in our favor. Plus, ongoing trends in digitalization and innovation in our sector offer good opportunities.
+    95	    \item \textbf{Threats}:
+    96	Our project faces some potential risks. Firstly, there's the chance that competitors could easily copy our idea in the near future. Additionally, \textbf{future regulations} on AI could pose an economic threat. If restrictions are placed on LLMs, a significant part of our system would be affected. There's also the concern that ethical debates around work might become a problem, especially if there's widespread distrust or bans on AI in Western countries.
+    97	\end{enumerate}
+
+
+    98	\section{Functional Requirements}
+    99	\subsection{Authentication and account management}
+   100	\begin{itemize}
+   101	    \item An user shall be able to perform a login operation
+   102	    \item An authenticated user shall be able to perform a logout operation
+   103	    \item An authenticated user shall be able to completely delete its account
+   104	\end{itemize}
+   105	\subsection{Organization management and fee Requirements}
+   106	\begin{itemize}
+   107	    \item The owner shall be able to pay a subscription for enabling its Organization
+   108	    \item The system shall be able to restrict edit permissions if the subscription is not paid
+   109	    \item The system must allow users to create an Organization, and therefore becoming its owner
+   110	    \item The owner must be able to add and remove users to his Organization
+   111	    \item The system must allow Organizations to assign tasks for their assignees
+   112	\end{itemize}
+   113	\subsection{Task structure}
+   114	\begin{itemize}
+   115	    \item Each task should be capable of having multiple subtasks in a tree structure
+   116	    \item Each task must have exactly one manager
+   117	    \item Each task must have at least one assignee
+   118	    \item Each task should have a title
+   119	    \item Each task should have a description
+   120	    \item Each task should have a priority option
+   121	    \item Each task should have a deadline option
+   122	    \item Each task should have a state attribute
+   123	    \item Each task should have a manually managed notes section
+   124	    \item Each task should have the possibility to be deleted by its managers
+   125	\end{itemize}
+   126	\subsection{User interface}
+   127	\begin{itemize}
+   128	    \item Users shall be able to see all the tasks assigned/managed to them in a tree structure
+   129	    \item Each user shall be able to edit all the tasks that are assigned/managed by him
+   130	\end{itemize}
+   131	\subsection{Permission system}
+   132	\begin{itemize}
+   133	    \item The system must implement a permission mechanism
+   134	    \item The permission mechanism shall be customizable by each task
+   135	    \item The permission system must implement various visibility and modification options
+   136	    \item The system must enforce task permissions to each user
+   137	\end{itemize}
+   138	\subsection{Report system}
+   139	\begin{itemize}
+   140	    \item The application must provide a manual report option
+   141	    \item The manual reports must be done by users
+   142	    \item The application must provide an automatic report option
+   143	    \item The automatic reports must be based off of user notes and reports
+   144	    \item The automatic reports must be created by the system using LLM technology
+   145	    \item The system must allow managers to request reports manually
+   146	    \item The system must allow managers to request reports automatically
+   147	    \item The system must implement a mechanism that allow managers to schedule manual or automatic report requests
+   148	    \item When a manager schedules a report he shall be able to set a time and a frequency
+   149	    \item When a manager schedules a report he shall be able to delete it
+   150	    \item A manager shall be able to see a list containg all the reports of a specific task
+   151	\end{itemize}
+   152	\subsection{Notification system}
+   153	\begin{itemize}
+   154	    \item The system must implement a Notification dashboard
+   155	    \item Each user can mark messages as read, unread, or even deleting them
+   156	    \item The notification dashboard must be available by both assignees and managers
+   157	    \item The notification dashboard must show report requests issued by managers
+   158	    \item The notification dashboard must show task completition pings to each appropriate member of a task
+   159	    \item The system must allow its users the option for enabling notifications
+   160	    \item The system must allow its users the option for disabling notifications
+   161	\end{itemize}
+
+   162	\section{Non-functional Requirements}
+   163	\subsection{Performance}
+   164	\begin{itemize}
+   165	    \item The software should implement tools for performance monitoring
+   166	    \item The automatic report generation should take at most 3 seconds for each level of the task tree
+   167	    \item Notifications should be sent in less than 5 minutes from the happening of the triggering event
+   168	\end{itemize}
+
+   169	\subsection{Reliability}
+   170	\begin{itemize}
+   171	    \item The system should have minimum downtime and at least 99\% uptime
+   172	    \item The system should implement a way to avoid collisions if two or more users try to edit the same task simultaneously
+   173	    \item The automatic report generation should implement a system to prevent chatbot hallucination
+   174	    \item The system should have redundant storage to avoid data loss in case of an accident
+   175	\end{itemize}
+
+   176	\subsection{Usability}
+   177	\begin{itemize}
+   178	    \item The software and the UI should be easy to understand and friendly to use
+   179	    \item The automatically generated report should be as accurate as possible
+   180	\end{itemize}
+
+   181	\subsection{Scalability}
+   182	\begin{itemize}
+   183	    \item The system should be able to manage at least 100.000 users simultaneously
+   184	    \item The system should be able to manage at least 10.000.000 non-simultaneous users
+   185	    \item The system should be able to manage a task tree with at least 1000 tasks
+   186	    \item The system should be able to manage a task tree with an height of at least 10 levels
+   187	\end{itemize}
+
+   188	\subsection{Security}
+   189	\begin{itemize}
+   190	    \item The system should allow users to see and edit only tasks they are entitled to use
+   191	    \item Authentication procedure should rely on string encryption mechanisms
+   192	    \item The password recovery system should not compromise security
+   193	    \item A company's data should be encrypted in the database in order to avoid data leak in case of security breaches
+   194	\end{itemize}
+   195	\pagebreak
+
+   196	\section{Use Case Diagram}
+   197	Within this section, we discuss the Use Case Diagram of the system, outlining the diverse capabilities available to each actor when utilizing MindMerge.
+   198	\subsection{Actors structure}
+   199	\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/UseCaseDiagram/UseCaseUser.jpg}
+   200	\subsection*{Description}
+   201	In our system, a critical part is the registration and the following authentication. This concept keeps valid for every kind of user withing the platform.
+   202	In the system, 3 type of user are made available.
+   203	The most important one is the Organization Owner. It is responsible of deploying the entire organization and managing every user contained in it. More of that will be discussed later.
+   204	The other roles are the Assignee and the Manager. The assigne is considered to be the last in the logistic chain, responsible for completing tasks and managing its own notes for the AI report system to work.
+   205	Finally, the Manager actor inherits everything from the assignee, but he is granted some major capabilities, such as managing tasks, creating subtasks and all things related to them.
+   206	\subsection{Authentication structure}
+   207	\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAuthentication.jpg}
+   208	\subsection*{Description}
+   209	There are multiple methods for end-users to access the platform. Initially, users can utilize Google and Facebook APIs, which allow them to conveniently access the platform using their existing accounts. Additionally, a proprietary system for account creation and management will be provided.\\
+   210	Here is the authentication structure flow:
+   211	\begin{itemize}
+   212	    \item  An anonymous user initiates a login request.
+   213	    \item A subsequent sign-in request is made, utilizing the sign-in APIs mentioned above.
+   214	    \item  Once authenticated, the user is granted access to the platform.
+   215	\end{itemize}
+   216	In the event that a user forgets their credentials, a password recovery system will be available. This system will send an email to the user containing a recovery link.
+   217	\subsection{Owner structure}
+   218	\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseOwner.jpg}
+   219	\subsection*{Description}
+   220	The organization owner holds full system capabilities. It is their responsibility to add and remove users, as well as create the organization itself. They are also tasked with paying the subscription for the service, calculated based on the platform usage rate and managed through external banking APIs.\\
+   221	More of that will be discussed in later sections.
+   222	\subsection{Assignee and Manager structure}
+   223	\includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAssigneeManager.jpg}
+   224	\subsection*{Description}
+   225	As an assignee, my primary responsibility is to add notes and edit task statuses based on the daily workload. Additionally, a manager also has the permission to create subtasks.
+
+   226	This critical aspect involves several components:
+   227	\begin{itemize}
+   228	\item Definition of the status (modifiable during the lifecycle of the subtask).
+   229	\item Nomination of the manager, as well as the assignees.
+   230	\item Definition of recursive permission parameters (further details below).
+   231	\item Naming and description of the task.
+   232	\end{itemize}
+
+   233	Managers also have the permission to delete subtasks, whether completed or not.
+
+   234	Furthermore, managers gain the capability to request a report. This request should include details such as the inquiring task, its type (AI-managed or not), its prompt, and its frequency. The notification system will inform the targeted users via email or in-app notification.
+   235	%VERIFICARE CONGRUENZA TRA I 2
+
+   236	\section{Context Diagram}
+   237	This section illustrates the context diagram of the system and describes the relations between MindMerge and two different kinds of external entities.
+
+   238	\subsection{Diagram}
+   239	\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/context_diagram.jpeg}
+
+   240	\subsection{Subordinate systems}
+   241	External softwares that are used by MindMerge to provide services to the users.
+   242	\begin{itemize}
+   243	    \item Google Authenticator and Facebook: they are used to give to users the possibility to log in using their Google or Facebook account. Allowing third party authentication, the system doesn't force user to create a new MindMerge account.
+   244	    \item Payment System: it is used to allow Organization's owner to pay for the system's subscription.
+   245	    \item OpenAI APIs: they are used, on manager request, to generate an automatic report of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
+   246	    \item Gmail: it is used as part of the notification system to notify creation of new tasks or updates to the existing ones via mail.
+   247	\end{itemize}
+
+   248	\subsection{Actors}
+   249	Users that interact with the system and are able to use some of its functionalities.
+   250	\begin{itemize}
+   251	    \item Anonymous user: A user that has not yet authenticated into the system. He is able to access login functionalities, also by using subordinate systems provided for that, to sign up in case he doesn't have an existing account or to recover password in case he isn't able to remember it.
+   252	    \item Authenticated user: A user that has completed authentication procedure and is logged into the system. He has the possibility to logout in every moment, becoming an anonymous user, but also to edit his profile or change password.
+   253	    \item Owner: A user that is the head of a specific organization. He has the possibility to create an organization, pay the subscription using the external payment system and add or remove users to or from that. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
+   254	    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and doing some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is himself an assignee, so he also has all the possibilities related to that role.
+   255	    \item Assignee: A user that is required to complete a specific task by a manager. He has the possibility to edit the task's status, to notify the manager that he has done something he was asked to do, or to add notes, in order to communicate something related to what he did.
+   256	\end{itemize}
+
+   257	\section{Components Diagram}
+
+   258	This section illustrate the component diagram of the system. To improve readability we split the components into several sub
+   259	components.
+   260	Each sub component has a color assigned to it, and the interfaces that are provided by that specific component are painted with the same color.
+   261	This helps to quickly identify which component is responsible for a specific interface.
+   262	\newline \newline
+   263	The list of sub components is the following:
+   264	\begin{itemize}
+   265	    \item \textcolor[HTML]{8CC86E}{\textbf{Data Base Manager: }} This component is responsible for managing the data base, it is an interface between
+   266	          the data base and the rest of the subsystems. The color assigned to this component is \textcolor[HTML]{8CC86E}{green}.
+   267	    \item \textcolor[HTML]{F0C832}{\textbf{Notification Manager: }} This component is responsible for managing the notifications;
+   268	          This means sending notification, and serve the data to the front end to visualize the pending notification of a user. The color assigned to this component is \textcolor[HTML]{F0C832}{yellow}.
+   269	    \item \textcolor[HTML]{FF0000}{\textbf{Account Manager: }} This component manage accounts, in particular it handles sign in, log in, account changes and account deletion.
+   270	          The color assigned to this component is \textcolor[HTML]{FF0000}{red}.
+   271	    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It's objective is to make the
+   272	          implementation of the rest of the system agnostic from the specific LLM used. The color assigned to this component is \textcolor[HTML]{64C8BE}{aqua green}.
+   273	    \item \textcolor[HTML]{A0C8F0}{\textbf{Task Tree Navigator: }} This component is a simple library with some algorithm to navigate a tree data structure.
+   274	          In our specific case the tree represent the tasks and subtasks of an organization. Since this algorithms are used many
+   275	          times throughout the system they have been put in a specific component to make them reusable. The color assigned to this component is \textcolor[HTML]{A0C8F0}{light blue}.
+   276	    \item \textcolor[HTML]{FA9646}{\textbf{Report Manager: }} This component manage the reports, in particular it is responsible for generating report automatically (using an LLM) or manually (reminding users with a notification that they have to deliver a report).
+   277	          The component also allow users to set report schedule, so that the reports generation can be triggered automatically with a customizable frequency.
+   278	          The color assigned to this component is \textcolor[HTML]{FA9646}{orange}.
+   279	    \item \textcolor[HTML]{FF00FF}{\textbf{Organization Manager: }} This component allow an user to create an organization, or perform some action on his organizations,
+   280	          like adding/removing a user, or paying the subscription to use the software. The color assigned to this component is \textcolor[HTML]{FF00FF}{purple}.
+   281	    \item \textcolor[HTML]{2682D5}{\textbf{Task Manager: }} This component allow users to interact with the tasks.
+   282	          In particular it is responsible to visualize, create, delete and edit tasks inside one organization. The color assigned to this component is \textcolor[HTML]{2682D5}{blue}.
+   283	    \item \textbf{Front End: } This component is responsible for the visualization of the data, and the interaction with the user. This component dose not have a specific color assigned to it, since it dose not provide any interface to other components.
+   284	    \item \textcolor[HTML]{E68CB4}{\textbf{External APIs: }} All interfaces provided by external APIs in the system (like authentication, payment, etc.) are painted with the color \textcolor[HTML]{E68CB4}{pink}.
+   285	\end{itemize}
+
+   286	\subsection{Data Base Manager}
+   287	\subsubsection{Diagram}
+   288	\begin{center}
+   289	\includegraphics[width=5in,height=\textheight,keepaspectratio]{images/component_diagram/data_base_manager.jpg}
+   290	\end{center}
+   291	\subsubsection{Descriptions}
+
+   292	We have model the system with 3 particular objects (tasks, users and organizations).
+   293	The database manager has a specific component to manage each one of them. The interfaces provided
+   294	are divided fot the kind of action that needs to be performed (creation, deletion, modification or read operations).
+
+   295	\subsection{Notification Manager}
+   296	\subsubsection{Diagram}
+   297	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/notification_manager.jpg}
+   298	\subsubsection{Descriptions}
+   299	The notification manager system has 2 specific tasks:
+   300	\begin{itemize}
+   301	    \item Allowing other components to send notification to users.
+
+   302	          This is done by the ``send notification'' interface
+   303	    \item Allow a user to visualize pending notification in the front end
+
+   304	          This id done by the other 4 interfaces
+   305	\end{itemize}
+
+   306	The system is composed of 3 different component
+   307	\begin{itemize}
+   308	    \item \textbf{Generic Notification Manager: }
+
+   309	          This component is the one that provided the ``Send Notification'' interface, and it only act as
+   310	          a switch. The system allow for notification to be sent either via mail, or with an in-app notification.
+   311	          When a notification comes in to be send this component will decide where to send it.
+   312	    \item \textbf{External Notification Manager: }
+
+   313	          This component will send a mail with a notification to a specific user.
+   314	          This component has various external APIs connected to it, as how the notification is sent will depend on how the user signed In.
+   315	    \item \textbf{Internal Notification Manager: }
+
+   316	          This component manage the in-app notifications. It can either be asked to send a notification (in this case it writes it in the database)
+   317	          or it can be asked to get a notification by the front end, so that it can be visualized (in this case it reads the necessary data from the database)
+
+   318	\end{itemize}
+
+   319	\subsection{Account Manager}
+   320	\subsubsection{Diagram}
+   321	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/account_manager.jpg}
+   322	\subsubsection{Descriptions}
+   323	The account manager system allow users to register, log in, delete account and change account information (like password, name, ecc.).
+
+   324	The specific implementation depends on how the user signed in. For this reason the system has a switch component (``User Manager'')
+   325	that will decide which specific implementation to use for each specific user. Once this is decided the user
+   326	can be handled by one of the 3 components:
+   327	\begin{itemize}
+   328	    \item \textbf{Google User Manager: }
+
+   329	          This component will handle all the user that signed in with a google account.
+   330	    \item \textbf{Facebook User Manager: }
+
+   331	          This component will handle all the user that signed in with a facebook account.
+   332	    \item \textbf{Custom User Manager: }
+
+   333	          This component will handle all the user that register with an email and password.
+   334	\end{itemize}
+   335	Note that we have bundled the database interfaces for managing users into one single interface to enhance readability.
+   336	\subsection{LLM Prompter}
+   337	\subsubsection{Diagram}
+   338	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/llm_prompter.jpg}
+   339	\subsubsection{Descriptions}
+   340	This is a simple component that abstract the detail about the specific LLM that is been used from the rest of the system.
+   341	This is a good practice that can save some time in the future, if we decide to change the LLM that we are using.
+   342	In this example we are using Open AI APIs.
+
+   343	\subsection{Task Tree Navigator}
+   344	\subsubsection{Diagram}
+   345	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/task_tree_navigator.jpg}
+   346	\subsubsection{Descriptions}
+   347	This component provide some library useful to navigate the task tree. For example it can be used to find all the children of a task, up to a certain depth.
+
+   348	\subsection{Report Manager}
+   349	\subsubsection{Diagram}
+   350	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/report_manager.jpg}
+   351	\subsubsection{Descriptions}
+   352	The report manager have two main tasks:
+   353	\begin{itemize}
+   354	    \item Generating reports (both manually and automatically) 
+   355	    \item Managing the report schedule 
+   356	\end{itemize}
+
+   357	The system is composed of 5 different components:
+
+   358	\begin{itemize}
+   359	    \item \textbf{Manual Report Generator: }
+
+   360	    This component is responsible for generating manual reports. A manual report is a report that ir generated by a user, and not by the system.
+   361	    So in practice this component will just remind the user that he has to deliver a report.
+   362	    \item \textbf{Automatic Report Generator: }
+
+   363	    This component is responsible for generating automatic reports. An automatic report is a report that is generated ry the system,
+   364	    using an LLM. This component will use some LLM APIs, as well as the data that it could find in the database to generate the report, and then it will deliver It
+   365	    to the user how requested it, using the notification system.
+
+   366	    \item \textbf{Generic Report Generator: }
+   367	    
+   368	    This component is the one that provided the ``Generate Report'' interface, and it only act as a switch, That 
+   369	    will forward the request to the correct component (manual or automatic report generator).
+   370	    The component also verify that the user has the permissions to ask for the report
+
+   371	    \item \textbf{Periodic Report Editor: }
+
+   372	    This component is responsible for managing the report schedule.
+   373	    It will allow users to set the frequency of the scheduled reports, as well as to edit or delete them.
+   374	    Every time an operation is requested this component will verify the user's permission before executing the request.
+
+   375	    \item \textbf{Periodic Report Handler: }
+   376	    
+   377	    This component is responsible for handling the scheduled reports.
+   378	    It will read the schedule from the database, and then it will trigger a report generation event when the time comes.
+
+   379	\end{itemize}
+
+   380	\subsection{Task Manager}
+   381	\subsubsection{Diagram}
+   382	\begin{center}
+   383	    \includegraphics[width=5.5in,keepaspectratio]{images/component_diagram/task_manager.jpg}
+   384	\end{center}
+   385	\subsubsection{Descriptions}
+
+   386	The task manager is the component that allow users to interact with the tasks.
+   387	The interaction are divided in 3 main categories:
+   388	\begin{itemize}
+   389	    \item \textbf{Task Creation: }
+   390	    This is the process of creating a new task. That include operations like 
+   391	    setting the task name, the father task, the assignees, the managers ecc.
+   392	    This operations are handled by the ``Task Creator'' component.
+   393	    \item \textbf{Task Modification: }
+   394	    This is the process of modifying an existing task. That include operations like adding a descriptions or some notes,
+   395	    changing state, deadline assignee ecc; or even deleting the task.
+   396	    This operations are handled by the ``Task Editor'' component; This component will also send a notification to the manager of the task
+   397	    if the notification are enabled for the particular task.
+   398	    \item \textbf{Task Reading Operation: }
+   399	    This process is responsible for reading the task data from the database, and then serve it to the front end.
+   400	    This operations are handled by the ``Task Getter'' component.
+   401	\end{itemize}
+
+
+   402	\subsection{Organization Manager}
+   403	\subsubsection{Diagram}
+   404	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/organization_manager.jpg}
+   405	\subsubsection{Descriptions}
+
+   406	The organization manager has 3 main tasks:
+   407	\begin{itemize}
+   408	    \item \textbf{Allowing the manager to pay a subscription}
+
+   409	    The manager should be able to pay the subscription of our software, this is done by the component ``Payment Manager''.
+   410	    The component has 2 subordinate components:
+   411	    \begin{itemize}
+   412	        \item \textbf{Price Calculator: } This component calculate the price the owner should pay based on the number of users in the organization
+   413	        \item \textbf{Payment System: } This component is used to connect with the necessary banking system to handle payments
+   414	    \end{itemize}
+
+   415	    \item \textbf{Permission Verificator}
+
+   416	    This component is responsible for allowing or denying users actions. it will consider the permissions set in the task by connecting to the database,
+   417	    and it will also consider the validity of a license, so we can limit certain actions if the owner hasn't renewed the subscription.
+
+   418	    \item \textbf{User Manager}
+   419	    
+   420	    This component is the one that will allow an owner to add or remove users form his organization.
+   421	\end{itemize}
+
+
+   422	\subsection{Front End}
+   423	\subsubsection{Diagram}
+   424	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/component_diagram/front_end.jpg}
+   425	\subsubsection{Descriptions}
+   426	In the front end diagram we decided to create one component for every page of the application, for a total of 7 components:
+   427	\begin{itemize}
+   428	    \item \textbf{Sign In Page: } In this page the users will be able to sign in to the application.
+   429	    \item \textbf{Sign Up Page: } In this page the users will be able to sign up for the application
+   430	    \item \textbf{Home Page: } This is the main page of the application, where the user will be able to see/edit/create all the tasks of the organization.
+   431	    \item \textbf{Report Page: } This page will allow users to ask for a report, or set up a Periodic Report.
+   432	    \item \textbf{Notification View: } This page will allow users to see all the pending notifications.
+   433	    \item \textbf{Organization View: } This page will allow the organization owner to manage the organization, including things like adding/removing users, or paying the subscription.
+   434	    \item \textbf{Account View: } This page will allow the user to manage his account, including things like changing the password, or deleting the account.
+   435	\end{itemize}
+
+
+   436	\section{Class Diagram}
+
+   437	This section will illustrate the class diagram of the system. The class diagram is a static diagram that shows the structure of the system.
+   438	We have divided the class diagram in different modules. Each of them in a separate diagram.
+
+   439	All the class names are preceded by the name of the module they belong to, to avoid confusion.
+
+   440	Some time a class can inherits from a class that is defined in another module, in this case
+   441	we have represented the foreign class, with the name and tre dots in the place where attributes and methods should be.
+
+   442	\subsection{Data Transfer Objects}
+
+   443	\subsubsection{Diagram}
+
+   444	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/data_transfert_objects.jpg}
+
+   445	\subsubsection{Description}
+
+   446	The data transfer objects (DTOs) are used to represent
+   447	all the objects of the system;
+
+   448	In the classes there is a ``Date'' type used, this is an external dependency
+   449	from the JavaScript standard library
+
+   450	A list explaining all the classes follows:
+
+   451	\begin{itemize}
+   452	    \item \textbf{ReportType: }
+
+   453	    This is an enum that represent the two type of reports that our system can handel: Manual and Automatic.
+
+   454	    \item \textbf{ReportFrequency: }
+
+   455	    This is an enum that represent the various frequency a periodic report can have.
+
+   456	    \item \textbf{TaskReportSchedule: }
+
+   457	    This is a class that represent one report scheduled for a specific day, and with a specific frequency.
+   458	    This will be used by the report system to memorize and execute all the scheduled reports.
+
+   459	    \item \textbf{TaskNote: }
+   460	    
+   461	    This class represent a note that a user add to a specific task.
+   462	    A task can have more that one note, and this is represented in the class diagram.
+
+   463	    \item \textbf{TaskStatus: }
+   464	    
+   465	    This is an enum that represent the various status a task can have.
+
+   466	    \item \textbf{Task: }
+   467	    
+   468	    This is the class that represent a Task.
+
+   469	    A task has a double associations with users, represent by the two arrows named ``Is manager'' and ``Is assignee''.
+   470	    As the associations show, a task must have exactly one manager, and at least one assignee.
+
+   471	    A task is composed of various primitive attributes, like title, task id ecc. 
+   472	    And also of some complex attributes, like the a list of \texttt{TaskNotes}, a list of \texttt{TaskReportSchedule} 
+   473	    and a \texttt{TaskStatus}. This composition is represented in the class diagram. 
+
+   474	    \item \textbf{TaskTree: }
+   475	    
+   476	    A Task Tree is a recursive data structure that represent a tree of tasks starting from a root.
+   477	    The tree has a root task, and a series of children TaskTree.
+
+   478	    A TaskTree is associated with one task (the root task), this association, is only navigable from the TaskTree to the Task,
+   479	    as one task may be associated with more than one TaskTree. This is because
+   480	    the visibility of the tasks depends on the user that is looking at the tree.
+
+   481	    \item \textbf{UserKind: }
+
+   482	    This is an enum that represent the various kind of user that can be in the system.
+   483	    This derives form the way a user signed in.
+
+   484	    \item \textbf{Notification: }
+   485	    
+   486	    This class represent a notification issued to a particular user in a specific date.
+
+   487	    \item \textbf{Custom/Facebook/GoogleUserInfo: }
+   488	    
+   489	    Each user that could have signed in with a different method may require some additionals
+   490	    information to be stored in the database. This 3 classes allow us to extend the informations
+   491	    of a specific user, depending on how he signed in.
+
+   492	    \item \textbf{User: }
+   493	    
+   494	    This class represent a user of the system. A user can be linked to some tasks (as manager or assignee),
+   495	    and can be linked to some organizations.
+   496	    The link to an organization is represented by the association named ``Owns'' and ``Works for''.
+
+   497	    A user is also associated with an unlimited number of notifications, is associated
+   498	    with one of the user info between \texttt{CustomUserInfo}, \texttt{FacebookUserInfo} and \texttt{GoogleUserInfo},
+
+   499	    \item \textbf{Organization: }
+   500	    
+   501	    Thi class represent an organization; And has a double association with users, that represent the owner and the assignees of the organization.
+
+   502	    \item \textbf{CustomResponse}
+
+   503	    This is a class that will be used as a response to all our APIs.
+   504	    It will contain a status code, a message and a payload.
+   505	    The payload is a generic object represented with the type T
+   506	\end{itemize}
+
+   507	\subsection{Data Base Manager} % Gioele
+
+   508	\subsubsection{Diagram}
+
+   509	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/database_manager.jpg}
+
+   510	\subsubsection{Description}
+
+   511	The Data Base Manager is used to store, retrieve and manage every info and object regarding tasks, users and organizations, such as the user's notes files and the tasks attributes.
+   512	This includes:
+
+   513	\begin{itemize}
+   514	  \item \textbf{DataBaseManager: }
+   515	  
+   516	  A minimalist class containing a constructor only used to instantiate the Mongo driver, required to intercommunicate with MongoDB Atlas.
+   517	  This class is not part of our system, and is an external dependency.
+
+   518	  \item \textbf{TaskManager: }
+   519	  
+   520	  A class containing all the methods required for the task system to work. As an instance, That includes methods for the creation, the attributes modification (e.g. report schedule, name) and the subtask management.
+
+   521	  \item \textbf{UserManager: }
+   522	  
+   523	  A class containing all the methods regarding the user management system. That includes methods to create and update user info.
+
+   524	  \item \textbf{OrganizationManager: }
+   525	  
+   526	  A class containing all the methods related to the organization itself, managing its creation, deletion and inner user management.
+
+   527	\end{itemize}
+
+
+   528	\subsection{Services Base Module}
+
+   529	\subsubsection{Diagram}
+
+   530	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/services_base_.jpg}
+
+   531	\subsubsection{Description}
+
+   532	This module is primary used to define the  \texttt{ServicesBaseClass}
+   533	The class has 3 attributes (taskManager, userManager, organizationManager) that are used to interact with the database.
+   534	The class has 3 methods that are used to verify permissions of users or organizations.
+
+   535	This class is meant to provide a base class for all the services of the system.
+
+   536	The enum \texttt{PermissionKind} is necessary to represents the Read and Write permission attributes.
+
+
+   537	\subsection{Notification System}
+   538	\subsubsection{Diagram}
+
+   539	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/notificationSystem.jpg}
+
+   540	\subsubsection{Description}
+
+   541	The notification system is used to send notifications to users, using both internal and external managers, and to view and handle existing notifications. Every notification is associated with a specific user, a date and a flag to see if it has been read by the user. The system is composed by:
+
+   542	\begin{itemize}
+
+   543	\item \textbf{External Notification Manager}
+
+   544	This class refers to the external notification system. It implements the possibility to send notifications using mails to a specific user. 
+
+   545	\item \textbf{Internal Notification Manager}
+
+   546	This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read or unread, to get details about one of them and to get the list of notifications associated to a specific user.
+
+   547	\item \textbf{Notification Manager}
+
+   548	This class refers to the generic notifications handler. The component acts as a switch, so it decides whether a notification should be sent via external or internal system.
+   549	\end{itemize}
+
+   550	\subsection{Task Manager} %gab
+   551	\subsubsection{Diagram}
+   552	\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/class_diagram/task_manager.jpg}
+   553	\subsubsection{Description}
+   554	The Task Manager module allows users to interact with the tasks. Here is a list containing each class of this module:
+   555	\begin{itemize}
+   556	    \item \textbf{TaskGetter}
+   557	    This class returns any task requested by the user for his specific organization. It can either respond with the entire task tree or a specific one.
+   558	    \item \textbf{TaskCreator}
+   559	    This class allows users to create new tasks, or even add notes to already existing ones.
+   560	    \item \textbf{TaskEditor}
+   561	    This class include various methods for task modification. Some of the functionalities included are:
+   562	    \begin{itemize}
+   563	        \item Addition and removal of assignees in a specified task
+   564	        \item Update task name
+   565	        \item Edit or delete task notes
+   566	        \item Edit or delete specified Task
+   567	        \item Enable or disable notification for specified task
+   568	    \end{itemize}
+   569	\end{itemize}
+   570	\subsection{User Manager}
+
+   571	\subsubsection{Diagram}
+
+   572	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/user_manager.jpg}
+
+   573	\subsubsection{Description}
+
+   574	The User manager system is used to provide functionalities for the user's account management.
+
+   575	Once connected to the ServiceBaseClass discussed above, it provides the following classes:
+
+   576	\begin{itemize}
+   577	  \item \textbf{OauthLogInInfo: }
+   578	  
+   579	  A class which contains the link for the redirection and the clientId as a string.
+
+   580	  \item \textbf{LogInResponse: }
+   581	  
+   582	  A class containing the ID of the user and the string based on the response.
+
+   583	  \item \textbf{AccountManager: }
+
+   584	  A class which contains all the methods used to manage the accounts, such as the logins management via external APIs or the change of the password.
+   585	\end{itemize}
+   586	\subsection{Organization Manager}
+
+   587	\subsubsection{Diagram}
+   588	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/OrganizationManager.jpg}
+   589	\subsubsection{Description}
+   590	The Organization Manager is used to Owners with functionalities that vary from subscription management to Organization management
+   591	\begin{itemize}
+   592	    \item \textbf{OrganizationSubscriptionManagement}
+   593	    This class handles the subscription side of the Organization. It contains methods for:
+   594	    \begin{itemize}
+   595	        \item subscription verification and payment
+   596	        \item calculation of total subscription fee
+   597	    \end{itemize}
+   598	    \item \textbf{OrganizationEditor}
+   599	    This class allows Owners to add and remove new members in the Organization
+
+   600	\end{itemize}
+   601	\subsection{Report Manager} % Luca non s
+
+   602	\subsubsection{Diagram}
+
+   603	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/reportManager.jpg}
+
+   604	\subsubsection{Description}
+
+   605	The report manager is responsible for generating reports and managing report schedule. It is composed by:
+
+   606	\begin{itemize}
+
+   607	\item \textbf{Automatic Report Manager}
+   608	This class refers to the automatic report generation, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
+
+   609	\item \textbf{Manual Report Manager}
+   610	This class refers to the manual report generation, so report that are realised manually by users on request.
+
+   611	\item \textbf{Report Manager}
+
+   612	This class refers to the generic report manager, that will decide if a report should be generated automatically or manually.
+
+   613	\item \textbf{Report Scheduler}
+
+   614	This class referes to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
+
+   615	\end{itemize}
+
+   616	\end{document}
