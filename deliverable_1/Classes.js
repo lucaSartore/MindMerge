@@ -1402,7 +1402,7 @@ class AutomaticReportManager extends ServicesBaseClass{
 
 
 class ManualReportManager extends ServicesBaseClass{
-    generateAutomaticReports(organizationId, taskId, reportPrompt){
+    generateManualReports(organizationId, taskId, reportPrompt){
     }
 }
 
