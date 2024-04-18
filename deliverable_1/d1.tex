@@ -583,27 +583,28 @@ A list explaining all the classes follows:
 
     \item \textbf{Custom/Facebook/GoogleUserInfo: }
     
-    Each user that could have signed in with a different method may require some additionals
-    information to be stored in the database. This 3 classes allow us to extend the informations
-    of a specific user, depending on how he signs up.
+    Depending on the method in which an user could have signed up, we may require some additional
+    information that has to be stored in the database. This 3 classes allows us to extend these informations
+    for specific users.
+    %RIGUARDA
 
     \item \textbf{User: }
     
-    This class represent a user of the system. A user can be linked to some tasks (as manager or assignee),
-    and can be linked to some organizations.
-    The link to an organization is represented by the association named ``Owns'' and ``Works for''.
+    This class represents a single user of the system. Each user could either be linked to tasks (as a manager or an assignee),
+    and organizations.
+    The link to an organization is represented by the association named ``Owns'' or ``Works for''.
 
-    A user is also associated with an unlimited number of notifications, is associated
-    with one of the user info between \texttt{CustomUserInfo}, \texttt{FacebookUserInfo} and \texttt{GoogleUserInfo},
+    An user can also be associated with an unlimited number of notifications and (depending on the type of signup) 
+    with one of the UserInfo between \texttt{CustomUserInfo}, \texttt{FacebookUserInfo} and \texttt{GoogleUserInfo},
 
     \item \textbf{Organization: }
     
-    Thi class represent an organization; And has a double association with users, that represent the owner and the assignees of the organization.
+    This class represents an organization. It has a double association with users, one that represent the owner and one for the assignees.
 
     \item \textbf{CustomResponse}
 
-    This is a class that will be used as a response to all our APIs.
-    It will contain a status code, a message and a payload.
+    This is a custom class, that is going to be used as a response to all our APIs.
+    It contains a status code, a message and a payload.
     The payload is a generic object represented with the type T
 \end{itemize}
 
