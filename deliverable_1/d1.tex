@@ -627,7 +627,7 @@ This includes:
 
   \item \textbf{TaskManager: }
   
-  A class containing all the methods required for the task system to work. As an instance, That includes methods for the creation, the attributes modification (e.g. report schedule, name) and the subtask management.
+  A class containing all the methods required for the task system to work. For instance, That includes methods for the creation, the attributes modification (e.g. report schedule, name) and the subtask management.
 
   \item \textbf{UserManager: }
   
@@ -652,7 +652,7 @@ This module is primarily used to define the  \texttt{ServicesBaseClass}.
 This class has 3 attributes (that are used to interact with the database), and
 3 methods (that are used to verify users or organizations permissions).
 
-This class is meant to provide a base1 for all the services of the system.
+This class is meant to provide a base for all the services of the system.
 
 The enum \texttt{PermissionKind} is necessary to represents the Read and Write permission attributes.
 
@@ -668,15 +668,15 @@ The notification system is used to send and receive notifications by the users a
 
 \begin{itemize}
 
-\item \textbf{External Notification Manager}
+\item \textbf{ExternalNotificationManager}
 
 This class refers to the external notification system. It implements the possibility to send notifications via emails to a specific user. 
 
-\item \textbf{Internal Notification Manager}
+\item \textbf{InternalNotificationManager}
 
-This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read or unread, to get details about one of them and to get the list of notifications associated to a specific user.
+This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read, to get details about one of them and to get the list of notifications associated to a specific user.
 
-\item \textbf{Notification Manager}
+\item \textbf{NotificationManager}
 
 This class refers to the generic notifications handler. This component acts as a switch, so it decides whether a notification should be sent via external or internal system.
 \end{itemize}
@@ -732,7 +732,7 @@ Once connected to the ServiceBaseClass discussed above, it provides the followin
 \subsubsection{Diagram}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{images/class_diagram/OrganizationManager.jpg}
 \subsubsection{Description}
-The Organization Manager is a module that provide some actions used by the Owner of an organization.
+The Organization Manager is a module that provides some actions used by the Owner of an organization.
 The functionalities provided varies from the payment of the subscription to the addition or removal of users from the organization.
 This module is divided into the following classes:
 \begin{itemize}
@@ -758,19 +758,19 @@ The report manager is responsible for generating reports and managing report sch
 
 \begin{itemize}
 
-\item \textbf{Automatic Report Manager}
+\item \textbf{AutomaticReportManager}
 This class refers to the automatic report generation, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
 
-\item \textbf{Manual Report Manager}
+\item \textbf{ManualReportManager}
 This class refers to the manual report generation, so report that are realised manually by users on request.
 
-\item \textbf{Report Manager}
+\item \textbf{ReportManager}
 
 This class refers to the generic report manager, that will decide if a report should be generated automatically or manually.
 
-\item \textbf{Report Scheduler}
+\item \textbf{ReportScheduler}
 
-This class referes to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
+This class refers to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
 
 \end{itemize}
 
