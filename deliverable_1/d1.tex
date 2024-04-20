@@ -48,7 +48,7 @@ The flagship feature is the system - integrated with modern language models - th
 \pagebreak
 \restoregeometry
 
-We believe that the best way to showcase our project is through the experiences of the end users it's aimed at. Various actors are involved in the software:
+We believe that the best way to showcase our project is through the experiences of the end users it is aimed at. Various actors are involved in the software:
 \begin{itemize}
   \item Google Authenticator: the system dedicated to user access through Google credentials.
   \item OpenAI/Google server: the agent responsible for the operation of our flagship feature, namely the automatic creation of reports.
@@ -100,16 +100,16 @@ Within this framework, the SWOT analysis emerges as a vital instrument for gaini
   \caption{\small SWOT Analysis Diagram: visual representation of the Strengths, Weaknesses, Opportunities, and Threats associated with our software project}
 \end{figure}
 
-Here's a brief summary of the points outlined.
+Here is a brief summary of the points outlined.
 \begin{enumerate}
     \item \textbf{Strenghts}:\\
 Predictions indicate that the LLM market is expected to grow by around \textbf{36\%} by 2030\footnote{source: grandviewresearch.com}. Having reliable and established APIs is a big plus as they offer more flexibility and are easy to incorporate. The ongoing shift towards digitalization in the job market provides opportunities for innovation and improving how companies manage their human resources.
     \item \textbf{Weaknesses}:
 Moving on to weaknesses, our project has a few. Firstly, our team is small both in terms of finances and people. Depending too heavily on external APIs, even if they're reliable, is risky because our system relies heavily on them. Marketing our product and breaking into the market, which is competitive and growing, could be challenging. Resistance to change from employees at client companies is another hurdle. Lastly, ensuring the reliability of our reports and avoiding mistakes is crucial; if reports are inaccurate, it affects the usefulness and saleability of our product.
     \item \textbf{Opportuinities}:
-The business-to-business (\textit{B2B}) market has always been profitable, mainly because buyers are often other businesses rather than individual consumers. It's estimated to grow by \textbf{19\%} by 2031\footnote{source: straitsresearch.com}. LLMs are becoming more recognized in the public eye, which can work in our favor. Plus, ongoing trends in digitalization and innovation in our sector offer good opportunities.
+The business-to-business (\textit{B2B}) market has always been profitable, mainly because buyers are often other businesses rather than individual consumers. It is estimated to grow by \textbf{19\%} by 2031\footnote{source: straitsresearch.com}. LLMs are becoming more recognized in the public eye, which can work in our favor. Plus, ongoing trends in digitalization and innovation in our sector offer good opportunities.
     \item \textbf{Threats}:
-Our project faces some potential risks. Firstly, there's the chance that competitors could easily copy our idea in the near future. Additionally, \textbf{future regulations} on AI could pose an economic threat. If restrictions are placed on LLMs, a significant part of our system would be affected. There's also the concern that ethical debates around work might become a problem, especially if there's widespread distrust or bans on AI in Western countries.
+Our project faces some potential risks. Firstly, there is the chance that competitors could easily copy our idea in the near future. Additionally, \textbf{future regulations} on AI could pose an economic threat. If restrictions are placed on LLMs, a significant part of our system would be affected. There is also the concern that ethical debates around work might become a problem, especially if there is widespread distrust or bans on AI in Western countries.
 \end{enumerate}
 
 
@@ -241,7 +241,7 @@ In the event that a user forgets their credentials, a password recovery system w
 \subsection{Owner structure}
 \includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseOwner.jpg}
 \subsection*{Description}
-The organization owner holds full system capabilities. It's up to him to add and remove users, as well as create the organization itself. They are also tasked with paying the subscription for the service, calculated based on the platform usage rate and managed through external banking APIs.\\
+The organization owner holds full system capabilities. It is up to him to add and remove users, as well as create the organization itself. They are also tasked with paying the subscription for the service, calculated based on the platform usage rate and managed through external banking APIs.\\
 More of that will be discussed in later sections.
 \subsection{Assignee and Manager structure}
 \includegraphics[width=\textwidth, keepaspectratio]{images/UseCaseDiagram/UseCaseAssigneeManager.jpg}
@@ -282,7 +282,7 @@ Users that interact with the system and are able to use some of its functionalit
     \item Anonymous user: A user that has not yet authenticated into the system. He is able to access login functionalities, also by using subordinate systems provided for that, to sign up in case he doesn't have an existing account or to recover password in case he isn't able to remember it.
     \item Authenticated user: A user that has completed authentication procedure and is logged into the system. He has the possibility to logout in every moment, becoming an anonymous user, but also to edit his profile or change his password.
     \item Owner: A user that is the head of a specific organization. He has the possibility to create an organization, pay the subscription using the external payment system and add to and/or remove from his organization. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
-    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and do some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is an assignee himself, so he also has all the possibilities related to that role.
+    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and do some operations related to that (define task's status, assign new manager or new assignes to it, defining it is name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is an assignee himself, so he also has all the possibilities related to that role.
     \item Assignee: A user that is required to complete a specific task by a manager. He has the possibility to edit the task's status, to notify the manager that he has done something he was asked to do, or to add notes, in order to communicate something related to the work done.
 \end{itemize}
 
@@ -301,7 +301,7 @@ The list of sub components is the following:
           This means sending notification, and serve the data to the front end to visualize the pending notification of a user. The color assigned to this component is \textcolor[HTML]{F0C832}{yellow}.
     \item \textcolor[HTML]{FF0000}{\textbf{Account Manager: }} This component manage accounts, in particular it handles sign up, log in, account changes and account deletion.
           The color assigned to this component is \textcolor[HTML]{FF0000}{red}.
-    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It's objective is to make the
+    \item \textcolor[HTML]{64C8BE}{\textbf{LLM Prompter: }} This component is a simple library that provide an interface to prompt different LLMs. It is objective is to make the
           implementation of the rest of the system agnostic from the specific LLM used. The color assigned to this component is \textcolor[HTML]{64C8BE}{aqua green}.
     \item \textcolor[HTML]{A0C8F0}{\textbf{Task Tree Navigator: }} This component is a simple library with some algorithm to navigate a tree data structure.
           In our specific case the tree represent the tasks and subtasks of an organization. Since this algorithms are used many
@@ -664,7 +664,7 @@ The enum \texttt{PermissionKind} is necessary to represents the Read and Write p
 
 \subsubsection{Description}
 
-The notification system is used to send and receive notifications by the users and to view and handle existing notifications, by using an internal and an external manager. Every notification is associated with a specific user, a date and a flag to see if it has been read. The system is composed by:
+The notification system is used to send and receive notifications by the users and to view and handle existing notifications, via an internal and an external manager. Every notification is associated with a specific user, a date and a flag to see if it has been read. The system is composed by:
 
 \begin{itemize}
 
@@ -692,7 +692,7 @@ The Task Manager module allows users to interact with the tasks. Here is a list 
     \item \textbf{TaskCreator}
     This class allows users to create new tasks, or even add notes to already existing ones.
     \item \textbf{TaskEditor}
-    This class include various methods for task modification. Some of the functionalities included are:
+    This class includes various methods for task modification. Some of the functionalities included are:
     \begin{itemize}
         \item Addition and removal of assignees in a specified task
         \item Update task name
