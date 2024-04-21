@@ -270,20 +270,20 @@ This section illustrates the context diagram of the system and describes the rel
 \subsection{Subordinate systems}
 The external softwares that are used by MindMerge to provide services to the users are:
 \begin{itemize}
-    \item Google and Facebook Authenticator: they are used to give to users the possibility to log in using their Google or Facebook account. Allowing third party authentication, the system doesn't force user to create a new MindMerge account.
-    \item Payment System: It is used to allow Organization's owner to pay for the system's subscription.
-    \item OpenAI APIs: They are used, on manager request, to generate an automatic report of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
-    \item Mailing system: It is used as part of the notification system to notify creation of new tasks or updates to the existing ones via mail.
+    \item \textbf{Google and Facebook Authenticator:} they are used to give to users the possibility to log in using their Google or Facebook account. Allowing \textit{third party authentication}, the system doesn't force user to create a new MindMerge account.
+    \item \textbf{Payment System:} It is used to allow Organization's owner to pay for the system's subscription.
+    \item \textbf{OpenAI APIs:} They are used, on manager request, to generate an \textit{automatic report} of job done by assignees. MindMerge requests a report to the APIs and is given back the result.
+    \item \textbf{Mailing system}: It is used as part of the notification system to \textit{notify} creation of new tasks or updates to the existing ones via mail.
 \end{itemize}
 
 \subsection{Actors}
 Users that interact with the system and are able to use some of its functionalities.
 \begin{itemize}
-    \item Anonymous user: A user that has not yet authenticated into the system. He is able to access login functionalities, also by using subordinate systems provided for that, to sign up in case he doesn't have an existing account or to recover password in case he isn't able to remember it.
-    \item Authenticated user: A user that has completed authentication procedure and is logged into the system. He has the possibility to logout in every moment, becoming an anonymous user, but also to edit his profile or change his password.
-    \item Owner: A user that is the head of a specific organization. He has the possibility to create an organization, pay the subscription using the external payment system and add to and/or remove from his organization. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
-    \item Manager: A user that manages a specific task. He has the possibility to create subtasks and do some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to delete the subtasks he has created or to ask and receive reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is an assignee himself, so he also has all the possibilities related to that role.
-    \item Assignee: A user that is required to complete a specific task by a manager. He has the possibility to edit the task's status, to notify the manager that he has done something he was asked to do, or to add notes, in order to communicate something related to the work done.
+    \item \textbf{Anonymous user:} A user that \textbf{has not} yet authenticated into the system. He is able to \textit{access} login functionalities, also by using subordinate systems provided for that, to \textit{sign up} in case he doesn't have an existing account or to \textit{recover} password in case he isn't able to remember it.
+    \item \textbf{Authenticated user:} A user that has completed authentication procedure and \textbf{is logged} into the system. He has the possibility to logout in every moment, becoming an an onymous user, but also to edit his profile or change his password.
+    \item \textbf{Owner:} A user that is the \textbf{head} of a specific organization. He has the possibility to \textit{create} an organization, \textit{pay} the subscription using the external payment system and \textit{add to and/or remove from} his organization. He is himself a manager and an assignee, so he also has all the possibilities related to these roles.
+    \item \textbf{Manager:} A user that \textbf{manages} a specific task. He has the possibility to \textit{create} subtasks and do some operations related to that (define task's status, assign new manager or new assignes to it, defining it's name, description and recursive permission parameters). He is also able to \textit{delete} the subtasks he has created or to \textit{ask and receive} reports, that can be generated automatically by using OpenAI APIs or manually by an assignee. He is an assignee himself, so he also has all the possibilities related to that role.
+    \item \textbf{Assignee:} A user that is required to complete a specific task by a manager. He has the possibility to \textit{edit} the task's status, to \textit{notify} the manager that he has done something he was asked to do, or to \textit{add} notes, in order to communicate something related to the work done.
 \end{itemize}
 
 \section{Components Diagram}
@@ -665,7 +665,7 @@ The enum \texttt{PermissionKind} is necessary to represents the Read and Write p
 
 \subsubsection{Description}
 
-The notification system is used to send and receive notifications by the users and to view and handle existing notifications, by using an internal and an external manager. Every notification is associated with a specific user, a date and a flag to see if it has been read. The system is composed by:
+The notification system is used to \textit{send and receive} notifications by the users and to \textit{view and handle} existing notifications, by using an internal and an external manager. Every notification is associated with a specific user, a date and a flag to see if it has been read. The system is composed by:
 
 \begin{itemize}
 
@@ -675,11 +675,11 @@ This class refers to the external notification system. It implements the possibi
 
 \item \textbf{Internal Notification Manager}
 
-This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read or unread, to get details about one of them and to get the list of notifications associated to a specific user.
+This class refers to the internal notification system, that works in-app. It is possible to delete sent notifications, to mark them as read, to get details about one of them and to get the list of notifications associated to a specific user.
 
 \item \textbf{Notification Manager}
 
-This class refers to the generic notifications handler. This component acts as a switch, so it decides whether a notification should be sent via external or internal system.
+This class refers to the \textbf{generic} notifications handler. This component acts as a switch, so it decides whether a notification should be sent via external or internal system.
 \end{itemize}
 
 \subsection{Task Manager} %gab
@@ -760,18 +760,18 @@ The report manager is responsible for generating reports and managing report sch
 \begin{itemize}
 
 \item \textbf{Automatic Report Manager}
-This class refers to the automatic report generation, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
+This class refers to the \textbf{automatic report generation}, implementing the possibility to generate the report. It is connected to external APIs that will use information available in the database to complete the process.
 
 \item \textbf{Manual Report Manager}
-This class refers to the manual report generation, so report that are realised manually by users on request.
+This class refers to the \textbf{manual report generation}, so report that are realised manually by users on request.
 
 \item \textbf{Report Manager}
 
-This class refers to the generic report manager, that will decide if a report should be generated automatically or manually.
+This class refers to the \textbf{generic} report manager, that will decide if a report should be generated automatically or manually.
 
 \item \textbf{Report Scheduler}
 
-This class referes to the report scheduler management. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
+This class referes to the \textbf{report scheduler management}. It implements the possibility to schedule the sending of a report, get a list of the scheduled reports for a specific user, delete report requests scheluled for a specific user and execute report request that have been scheduled.
 
 \end{itemize}
 
