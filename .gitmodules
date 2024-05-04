@@ -1,3 +1,6 @@
 [submodule "front_end"]
 	path = front_end
 	url = https://github.com/lucaSartore/MindMerge-FrontEnd
+[submodule "back_end"]
+	path = back_end
+	url = https://github.com/lucaSartore/MindMerge-BackEnd
