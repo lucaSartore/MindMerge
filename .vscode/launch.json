@@ -11,6 +11,14 @@
             "cwd": "${workspaceFolder}/back_end",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run-script", "dev"]
+        },
+        {
+            "name": "test backend",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/back_end",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run-script", "test"]
         }
     ]
 }
