@@ -20,6 +20,24 @@
             "runtimeExecutable": "npm",
             "console": "integratedTerminal",
             "runtimeArgs": ["run-script", "test"]
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest: current file",
+            "cwd": "${workspaceFolder}/back_end",
+            //"env": { "NODE_ENV": "test" },
+            "program": "${workspaceFolder}/back_end/node_modules/.bin/jest",
+            "args": [
+                "${fileBasenameNoExtension}",
+                "--config",
+                "jest.config.js"
+            ],
+            "console": "integratedTerminal",
+            "windows": {
+                "program": "${workspaceFolder}/back_end/node_modules/jest/bin/jest"
+            }
+            // "disableOptimisticBPs": true,   
+        },
     ]
 }
