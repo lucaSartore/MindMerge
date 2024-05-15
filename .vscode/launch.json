@@ -18,6 +18,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}/back_end",
             "runtimeExecutable": "npm",
+            "console": "integratedTerminal",
             "runtimeArgs": ["run-script", "test"]
         }
     ]
