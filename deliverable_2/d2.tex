@@ -2,7 +2,7 @@
 
 \documentclass{article}
 
-\usepackage{xcolor}
+% \usepackage{xcolor}
 \usepackage[margin=0.5in]{geometry} 
 \usepackage{graphicx}
 \usepackage{multirow}
@@ -10,7 +10,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{float}
 \usepackage{adjustbox, lipsum}
-
+\usepackage{pdfpages}
 \useunder{\uline}{\ul}{}
 \title{MindMerge --- Deliverable e 2}
 \author{Gabriele Benetti, Gioele Bernardini, Luca Fossa Crescini, Luca Sartore}
@@ -53,6 +53,9 @@ The back end is the most complex component consists of several sub-components, i
 All the communications that the backend has with the external world are made through HTTP with json format.
 
 \section{Product Backlog}
+
+
+\includepdf[pages=-]{images/product_backlog.pdf} 
 
 \section{Definition of Tests}
 
