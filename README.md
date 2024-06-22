@@ -65,7 +65,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![NodeJS][Node.js]][Node-url]
+* [![Node][Node.js]][Node-url]
 * [![Express][express.js]][Express-url]
 * [![MongoDB][MongoDB]][MongoDB-url]
 * [![Vue][Vue.js]][Vue-url]
