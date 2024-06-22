@@ -66,7 +66,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 * [![Node][Node.js]][Node-url]
-* [![Express][express.js]][Express-url]
+* [![Express][Express.js]][Express-url]
 * [![MongoDB][MongoDB]][MongoDB-url]
 * [![Vue][Vue.js]][Vue-url]
 
@@ -184,12 +184,12 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[Node.js]: https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white
+[Node-url]: https://nodejs.org/en
+[Express.js]: https://img.shields.io/badge/Express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[Express-url]: https://expressjs.com/
+[MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
-[Express.js]: https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB
-[Express-url]: https://expressjs.com/
-[Node.js]: https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)
-[Node-url]: https://nodejs.org/en
-[MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white
-[MongoDB-url]: https://www.mongodb.com/
 
