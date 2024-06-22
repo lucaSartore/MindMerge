@@ -188,7 +188,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Vue-url]: https://vuejs.org/
 [Express.js]: https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB
 [Express-url]: https://expressjs.com/
-[NodeJS]: https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)
+[Node.js]: https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)
 [Node-url]: https://nodejs.org/en
 [MongoDB]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white
 [MongoDB-url]: https://www.mongodb.com/
