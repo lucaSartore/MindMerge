@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/lucaSartore/MindMerge">
-    <img src="images/readme.png" alt="Logo" width="80" height="80">
+    <img src="images/readme.png" alt="Logo" width="160" height="160">
   </a>
 
 <h3 align="center">project_title</h3>
@@ -51,13 +51,15 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Mindmerge is a web application focused on optimizing workflow. 
+The app allows users to create work schedules and tasks to assist businesses in dividing workloads. 
+The flagship feature is the system - integrated with modern language models - that provides ***fully automated reports*** on personnel productivity, based on notes and comments provided by employees themselves in an easy and flexible manner.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
