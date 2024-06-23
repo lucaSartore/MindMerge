@@ -84,7 +84,6 @@ The complete list of all the product backlog we submitted, as well as the time t
 \subsection{Version 4.0}
 \includepdf[pages=-]{images/product_backlog_v4.pdf}
 
-
 \section{Definition of Tests}
 
 \subsection*{Test DatabaseManager:TaskManager}
@@ -229,9 +228,30 @@ The product owner was happy with the results but requested a change. Specificall
 \subsection{Burn-down Chart}
 \includegraphics[width=0.95\textwidth]{images/burndown_chart_3.png}
 
-\section{Api Design}
+\section{API Design and Documentation}
+We have documented all of our APIs using the OpenAPI standard. The documentation is available at the following URL: \url{http://mindmerge-backend.onrender.com/api-docs}
+\newline
+Note that the documentation is hosted on Render; therefore, it may take a while to load the first time you access it, as mentioned in the limitations section.
 
 \section{Testing Implementation}
+
+At the end of our project, we implemented 70 automated tests, that can be run using the command \texttt{npm test}
+in the backend folder.
+\newline
+The tests are also run automatically every time we push to the main branch, using GitHub Actions.
+
+\subsection{Test Coverage}
+
+With some approximations, we estimated that our tests cover about 70\% of the codebase.
+\newline
+Starting from the 183 tests that we defined at the beginning of the project, we subtract the 25 non-automated
+tests that were defined, arriving at 158 automated tests.
+\newline
+From here we should subtract the 55 or so tests (depending on how you count them ) that
+are testing feature that are not implemented yet. This leaves us with a total of 103 tests that should be implemented 
+for a theoretical 100\% coverage.
+\newline
+Given that we have implemented 70 tests, we can estimate that we have a coverage of about 70\%.
 
 \section{How to demo}
 In this section We'll explain everything needed to demo and evaluate our project.
