@@ -11,6 +11,14 @@
 \usepackage{float}
 \usepackage{adjustbox, lipsum}
 \usepackage{pdfpages}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=cyan,
+    }
+
 \useunder{\uline}{\ul}{}
 \title{MindMerge --- Deliverable e 2}
 \author{Gabriele Benetti, Gioele Bernardini, Luca Fossa Crescini, Luca Sartore}
@@ -220,4 +228,51 @@ The product owner was happy with the results but requested a change. Specificall
 
 \subsection{Burn-down Chart}
 \includegraphics[width=0.95\textwidth]{images/burndown_chart_3.png}
+
+\section{Api Design}
+
+\section{Testing Implementation}
+
+\section{How to demo}
+In this section We'll explain everything needed to demo and evaluate our project.
+\subsection{Demo Accounts}
+
+To log in in the MindMerge account you'll need to use a Google account, that has been inserted in Google's developer console as a testing account.
+This is because our app has not been published and verified by google, therefore there are some limitations on the accounts that can log in.
+
+We have created two testing account, and we sent the credentials to you via email.
+The email has been sent Monday 24th of June at 8:00 AM, with the subject ``MindMerge - Testing Account''.
+
+If you prefer to use you own account, you can send us the email address you want to use, and we'll add it to the list of testing accounts.
+
+\subsection{Demo Limitations}
+
+Our demo has some minors limitations that stands from the fact that we are using a free tier of basically every service we are using.
+We would like to quickly list them here so that you are aware of them before starting the demo.
+
+\begin{itemize}
+  \item \textbf{LLM Service:} We are using the free tear of the Google Bard API as our llm service. The free tear is limited to 15 requests per minute.
+        One report generation uses as many requests as there are tasks in the task tree... This means that in one minute you can generate at most:
+        \begin{itemize}
+          \item 15 reports for a task that has no child tasks
+          \item 5 reports for a task that has 3 child tasks
+          \item 1 report for a task that has 15 child tasks
+        \end{itemize}
+        and so on...
+  \item \textbf{Backend startup time:} The backend is hosted on render, with the free tear... this means that our service will be 
+        shut down if it is not used for a while. According to the documentation this can ``delay requests by 50 seconds or more''.
+
+        To quickly check whether the backend is up and running, you can go to the following URL: \url{https://mindmerge-backend.onrender.com/hello}
+  \item \textbf{Backend response time:} As mentioned early we used the free google bard API, however the free tear is not available in the EU, therefore we
+  had to position the the backend in the US, this makes the interface a bit slow, as every request made to the backend has to travel across the pacific ocean twice.
+
+  \item \textbf{Notification email:} Our system will send you an email with a report every time you request it... however, we are using the free tear of the 
+  services that allow us to send emails, therefore the emails will be sent from a random email address, and this makes it very likely that \textbf{the email will be marked as spam}.
+\end{itemize}
+\subsection{Video}
+\subsection{Instructions}
+
+
+
+
 \end{document}
