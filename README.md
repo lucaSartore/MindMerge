@@ -55,10 +55,12 @@ Mindmerge is a web application focused on optimizing workflow.
 The app allows users to create work schedules and tasks to assist businesses in dividing workloads. 
 The flagship feature is the system - integrated with modern language models - that provides ***fully automated reports*** on personnel productivity, based on notes and comments provided by employees themselves in an easy and flexible manner.
 
-For more informations about the project, check out:
+For more information about the project, check out:
+
 [Deliverable 1](https://github.com/lucaSartore/MindMerge/blob/main/deliverable_1/Deliverable_1.pdf)
 
 [Deliverable 2](https://github.com/lucaSartore/MindMerge/blob/main/deliverable_2/Deliverable2.pdf)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
