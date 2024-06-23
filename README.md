@@ -37,16 +37,11 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -61,8 +56,10 @@ The app allows users to create work schedules and tasks to assist businesses in 
 The flagship feature is the system - integrated with modern language models - that provides ***fully automated reports*** on personnel productivity, based on notes and comments provided by employees themselves in an easy and flexible manner.
 
 For more informations about the project, check out:
-
-
+    ```
+    https://github.com/lucaSartore/MindMerge/blob/main/deliverable_1/Deliverable_1.pdf
+    https://github.com/lucaSartore/MindMerge/blob/main/deliverable_2/Deliverable2.pdf
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
