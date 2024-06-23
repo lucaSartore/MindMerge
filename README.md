@@ -84,10 +84,8 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-NodeJS is the only prerequisite required to test the platform:
-    ```sh
-    npm install npm@latest -g
-    ```
+NodeJS is the only prerequisite required to test the platform
+
 
 ### Installation
 
@@ -115,9 +113,26 @@ From the main folder ```Mindmerge```, launch the following command on the shell 
 (cd backend/ && npm run dev) & (cd front_end/ && npm run dev) &
 ```
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Here is a brief list of the command available via ```npm run```:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+***Frontend***
+- *npm run test*:  
+    Launch the automated tests via `Jest`
+- *npm run dev*:  
+    Launch the application for development purpose
+- *npm run generate-api*:  
+    Generates the internal API documentation, based on the `JSdoc` comments within the files
+- *npm run documentation*:  
+    Generates the automated documentation
+
+***Backend***
+- *npm run convert*:  
+    Required to convert the syntax from common js to ES6
+- *npm run dev*:  
+    Same as the backend counterpart
+- *npm run preview*:  
+    Starts the application and automatically launches the browser on the starting page
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
