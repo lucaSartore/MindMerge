@@ -84,29 +84,28 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+NodeJS is the only prerequisite required to test the platform:
+    ```sh
+    npm install npm@latest -g
+    ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo and inizialize the submodules
-   ```sh
-   git clone https://github.com/github_username/repo_name.git && cd Mindmerge
-   git submodule update --init --recursive
 
-   ```
-3. Install NPM packages both in backend and frontend
-   ```sh
-   npm install .
-   npm run convert
-   ```
+1. Clone the repo and inizialize the submodules:
+    ```sh
+    git clone https://github.com/github_username/repo_name.git &&
+    cd Mindmerge &&
+    git submodule update --init --recursive
+    ```
+
+2. Install NPM packages both in backend and frontend:
+    ```sh
+    (cd backend/ && npm install .) &
+    (cd frontend/ && npm install . && npm run convert) &
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
