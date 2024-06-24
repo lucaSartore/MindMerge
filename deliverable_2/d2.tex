@@ -390,7 +390,20 @@ This is done by using the following buttons:
 To test the automatic report management feature you can use the organization named: ``Commissione Feste Universitarie (CFU)''
 of which both MindMerge Tester1 and MindMerge Tester2 are members.
 There you can find many preloaded tasks with description and notes that you can query.
-We would 
+We would appreciate if you could avoid editing this organization, as we would like to keep it as a demo.
+
+
+You should know that when you ask a report it will start from the task that was selected when you pressed the button.
+The LLM will have access to the informations of all the tasks that are below the selected task in the tree, but not to the informations of the tasks that are above it.
+\newline
+However it should be noted that obviously the answer will be more precise if you identify the correct task to start from.
+\newline
+A few questions you can ask are:
+\begin{itemize}
+  \item ask ``Summarize what this task is about?'' from the task ``Organize a new event in povo''
+  \item ``Do We already have a structure for the event?'' from the task ``Organize a new event in povo'' or the task ``Ask for structure availability''
+  \item ``Where haven't we placed posters so far?'' from the task ``Stick posters around''
+\end{itemize}
 
 \subsection{Error handling}
 
