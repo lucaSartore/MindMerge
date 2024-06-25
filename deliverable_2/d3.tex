@@ -20,7 +20,7 @@
     }
 
 \useunder{\uline}{\ul}{}
-\title{MindMerge --- Deliverable 3}
+\title{MindMerge --- Deliverable e 2}
 \author{Gabriele Benetti, Gioele Bernardini, Luca Fossa Crescini, Luca Sartore}
 
 \begin{document}
@@ -40,7 +40,7 @@ This is the Abstract of the deliverable 2
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.95\textwidth]{images/architecture.jpg}
-  \caption{\small The architecture diagram of the MindMerge system}
+  \caption{\small The architecture diagram ot the MindMerge system}
 \end{figure}
 The architecture is relatively simple,
 comprising two classical components: the front end and the back end, along with several smaller components (browser, OAuth server, LLM service, and MongoDB).
@@ -83,6 +83,7 @@ The complete list of all the product backlog we submitted, as well as the time t
 \includepdf[pages=-]{images/product_backlog_v3.pdf}
 \subsection{Version 4.0}
 \includepdf[pages=-]{images/product_backlog_v4.pdf}
+
 \section{Definition of Tests}
 
 \subsection*{Test DatabaseManager:TaskManager}
@@ -261,38 +262,35 @@ for a theoretical 100\% coverage.
 Given that we have implemented 70 tests, we can estimate that we have a coverage of about 70\%.
 
 \section{How to demo}
-In this section We'll explain everything needed to demo and evaluate our project.
-The first thing you should know is that you can access the frontend at the following URL: \url{https://lucasartore.github.io/MindMergeApp/sign_in}
+This section covers all the necessary information to demonstrate and evaluate our project. Firstly, it is important to note that the frontend of the application can be accessed via the following URL: \url{https://lucasartore.github.io/MindMergeApp/sign_in}
 \subsection{Demo Accounts}
 
-To log in in the MindMerge account you'll need to use a Google account, that has been inserted in Google's developer console as a testing account.
-This is because our app has not been published and verified by google, therefore there are some limitations on the accounts that can log in.
+To log in in the MindMerge account you'll need to use some specific Google accounts that have been already inserted in Google's developer console as a testing account.
+Since our app has not been published and verified by google, there are some limitations on the accounts that can log in, hence this is the only viable way to go.
 
 We have created two testing account, and we sent the credentials to you via email.
-The email has been sent Monday 24th of June at 8:00 AM, with the subject ``MindMerge - Testing Account''.
+The email has been sent \textbf{Monday 24th of June at 8:00 AM}, with the subject ``MindMerge - Testing Account''.
 
 If you prefer to use you own account, you can send us the email address you want to use, and we'll add it to the list of testing accounts.
 
 \subsection{Demo Limitations}
 
-Our demo has some minors limitations that stands from the fact that we are using a free tier of basically every service we are using.
-We would like to quickly list them here so that you are aware of them before starting the demo.
+Our demo has some minor limitations due to the fact that we are using the free tier of various services. We would like to briefly list these limitations here so that you are aware of them before starting the demo.
 
 \begin{itemize}
-  \item \textbf{LLM Service:} We are using the free tear of the Google Bard API as our llm service. The free tear is limited to 15 requests per minute.
+  \item \textbf{LLM Service:} We are using the free tier of the Google Bard API as our \textit{LLM} service. The free tier is limited to \textit{15 requests per minute}.
         One report generation uses as many requests as there are tasks in the task tree... This means that in one minute you can generate at most:
         \begin{itemize}
-          \item 15 reports for a task that has no child tasks
-          \item 5 reports for a task that has 3 child tasks
-          \item 1 report for a task that has 15 child tasks
+          \item 15 reports for a task that has no child tasks,
+          \item 5 reports for a task that has 3 child tasks,
+          \item 1 report for a task that has 15 child tasks.
         \end{itemize}
-        and so on...
-  \item \textbf{Backend startup time:} The backend is hosted on render, with the free tear... this means that our service will be 
-        shut down if it is not used for a while. According to the documentation this can ``delay requests by 50 seconds or more''.
+        ..And so forth.
+  \item \textbf{Backend startup time:} The backend is hosted on render, with the free tier... this means that our service will be 
+        terminated if it is not used for a while. According to the documentation this can delay requests ``by 50 seconds or more''.
 
-        To quickly check whether the backend is up and running, you can go to the following URL: \url{https://mindmerge-backend.onrender.com/hello}
-  \item \textbf{Backend response time:} As mentioned early we used the free google bard API, however the free tear is not available in the EU, therefore we
-  had to position the the backend in the US, this makes the interface a bit slow, as every request made to the backend has to travel across the pacific ocean twice.
+        To quickly check whether the backend is up or not, you can visit the following URL: \url{https://mindmerge-backend.onrender.com/hello}
+  \item \textbf{Backend response time:} As previously mentioned, we utilized the \textit{free} Google Bard API. However, the free tier is not available in the EU, necessitating the placement of the backend in the US. This may result in a slower interface, as every request to the backend must traverse the Pacific Ocean twice.
 
   \item \textbf{Notification email:} Our system will send you an email with a report every time you request it... however, we are using the free tear of the 
   services that allow us to send emails, therefore the emails will be sent from a random email address, and this makes it very likely that \textbf{the email will be marked as spam}.
@@ -417,3 +415,4 @@ To test our frontend error handling you can generate an error by doing one of tw
 Both of these actions will generate an error, and the user will see an alert with the error message.
 
 \end{document}
+
