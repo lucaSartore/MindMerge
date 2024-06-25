@@ -11,7 +11,7 @@
 <h3 align="center">Mindmerge</h3>
 
   <p align="center">
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://youtu.be/GRvbIcb5EpE">View Demo</a>
   </p>
 </div>
 
