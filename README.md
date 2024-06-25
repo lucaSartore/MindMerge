@@ -51,10 +51,11 @@ For more information about the project, check out:
 
 [Deliverable 2](https://github.com/lucaSartore/MindMerge/blob/main/deliverable_2/Deliverable2.pdf)
 
+### Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/GRvbIcb5EpE/0.jpg)](https://youtu.be/J4SjKY6N7vM)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -77,7 +78,15 @@ To get a local copy up and running follow these simple example steps.
 
 NodeJS is the only prerequisite required to test the platform
 
+### Submodules
 
+Our project structure is organized in 5 different submodules
+
+ - The main repository (this one) where we keep the readme, the UML documentation, and the sprints documentation
+ - [The backend repository](https://github.com/lucaSartore/MindMerge-BackEnd) where we keep the code related to the backend
+ - [The front end repository](https://github.com/lucaSartore/MindMerge-FrontEnd) where we keep the code related to the front end
+ - [The common infrastructure repository](https://github.com/lucaSartore/MindMerge-CommonInfrastructure) where we keep data structures that are used both in the backend and in the frontend
+ - [The app repository](https://github.com/lucaSartore/MindMergeApp) that is used to host the frontend using GitHub pages
 ### Installation
 
 
