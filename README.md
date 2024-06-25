@@ -8,18 +8,10 @@
     <img src="images/readme.png" alt="Logo" width="160" height="160">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Mindmerge</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
   </p>
 </div>
 
@@ -48,8 +40,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Mindmerge is a web application focused on optimizing workflow. 
 The app allows users to create work schedules and tasks to assist businesses in dividing workloads. 
